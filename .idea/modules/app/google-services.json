@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "285222017107",
+    "firebase_url": "https://superhelper-568ba.firebaseio.com",
+    "project_id": "superhelper-568ba",
+    "storage_bucket": "superhelper-568ba.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:285222017107:android:0b6b1a146b1f1a915f8ea6",
+        "android_client_info": {
+          "package_name": "com.anas.superhelper"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "285222017107-sd4hiu110ofd5meg51o5smv0e7kmf8ji.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.anas.superhelper",
+            "certificate_hash": "f6615178542e4168d0dc9fee77163fa72c8680c8"
+          }
+        },
+        {
+          "client_id": "285222017107-h9i28nql4sdta29u2g3j4q6pefrcf30f.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA8vAbHY78j60J10UCYBj6mhWSzFecbgO8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "285222017107-h9i28nql4sdta29u2g3j4q6pefrcf30f.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
