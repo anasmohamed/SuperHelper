@@ -27,7 +27,7 @@ public class SignUpRepository {
                     String uid = firebaseUser.getUid();
                     String name = firebaseUser.getDisplayName();
                     String email = firebaseUser.getEmail();
-                    User user = new User(uid, name, email);
+                    User user = new User();
 
                     authenticatedUserMutableLiveData.setValue(user);
                 }
