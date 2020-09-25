@@ -10,21 +10,21 @@ import com.anas.superhelper.auth.models.User;
 import com.anas.superhelper.auth.repository.SignUpRepository;
 import com.google.firebase.auth.AuthCredential;
 
-public class SignUpViewModel extends AndroidViewModel {
+public class SignUpViewModel extends ViewModel {
     private SignUpRepository signUpRepository;
     LiveData<User> authenticatedUserLiveData;
     LiveData<User> createdUserLiveData;
 
-    public SignUpViewModel(Application application) {
-        super(application);
-        signUpRepository = new SignUpRepository();
+    public SignUpViewModel() {
+        super();
+        if(signUpRepository == null){
+            signUpRepository = new SignUpRepository();
+        }
     }
 
-    void signInWithGoogle(AuthCredential googleAuthCredential) {
-        authenticatedUserLiveData = signUpRepository.firebaseSignInWithGoogle(googleAuthCredential);
+  public   void signUp(User user) {
+        authenticatedUserLiveData = signUpRepository.firebaseSignInWithGoogle(user);
     }
 
-    void createUser(User authenticatedUser) {
-       // createdUserLiveData = signUpRepository.createUserInFirestoreIfNotExists(authenticatedUser);
-    }
+
 }

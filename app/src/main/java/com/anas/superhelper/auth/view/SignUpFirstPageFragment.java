@@ -38,6 +38,12 @@ public class SignUpFirstPageFragment extends Fragment {
                 if (firstNameET.getText().toString().isEmpty()) {
                     firstNameET.setError("Field cannot be empty");
                 }
+               else if(lastNameEt.getText().toString().isEmpty())
+                {                    lastNameEt.setError("Field cannot be empty");
+
+
+                }else{
+
                 user.setFirstName(firstNameET.getText().toString());
                 user.setLastName(lastNameEt.getText().toString());
                 bundle.putParcelable("user",user);
@@ -49,8 +55,14 @@ public class SignUpFirstPageFragment extends Fragment {
 
                 fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.commit();
-            }
+            }}
         });
         return view;
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        getActivity().finish();
     }
 }

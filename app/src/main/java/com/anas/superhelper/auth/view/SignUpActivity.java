@@ -19,9 +19,19 @@ public class SignUpActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
         FragmentManager manager = getSupportFragmentManager();
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         manager.beginTransaction().add(R.id.frameLayout,new SignUpFirstPageFragment(),"sign_up_second_page_fragment")
                 .addToBackStack(null).commit();
 
+    }
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
+    }
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
     }
 }

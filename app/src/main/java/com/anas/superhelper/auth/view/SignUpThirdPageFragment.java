@@ -15,9 +15,13 @@ import android.widget.EditText;
 import com.anas.superhelper.R;
 import com.anas.superhelper.auth.models.User;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 
 public class SignUpThirdPageFragment extends Fragment {
-
+    public static final Pattern VALID_EMAIL_ADDRESS_REGEX =
+            Pattern.compile("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}$", Pattern.CASE_INSENSITIVE);
     Button nextFragmentBtn;
     EditText passwordET,confirmPasswordET;
     User user;
@@ -38,16 +42,35 @@ public class SignUpThirdPageFragment extends Fragment {
         nextFragmentBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.frameLayout, signUpLastFragment);
-                fragmentTransaction.addToBackStack(null);
-                user.setPassword(passwordET.getText().toString());
-                bundle.putParcelable("user",user);
-                signUpLastFragment.setArguments(bundle);
-                fragmentTransaction.commit();
+                if (passwordET.getText().toString().isEmpty()) {
+                    passwordET.setError("Field cannot be empty");
+                } else if (confirmPasswordET.getText().toString().isEmpty()) {
+                    confirmPasswordET.setError("Field cannot be empty");
+
+
+                } else if (confirmPasswordET.getText().toString().equals(passwordET.getText().toString())) {
+                    confirmPasswordET.setError("Fields must be equal");
+                    passwordET.setError("Fields must be equal");
+                } else if (!validate(passwordET.getText().toString())){
+                    passwordET.setError("enter valid email");
+
+                }else{
+                    FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                    fragmentTransaction.replace(R.id.frameLayout, signUpLastFragment);
+                    fragmentTransaction.addToBackStack(null);
+                    user.setPassword(passwordET.getText().toString());
+                    bundle.putParcelable("user",user);
+                    signUpLastFragment.setArguments(bundle);
+                    fragmentTransaction.commit();
+                }
+
             }
         });
         return view;
+    }
+    public static boolean validate(String emailStr) {
+        Matcher matcher = VALID_EMAIL_ADDRESS_REGEX.matcher(emailStr);
+        return matcher.find();
     }
 }
