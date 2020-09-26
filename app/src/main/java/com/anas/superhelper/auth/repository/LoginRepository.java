@@ -16,7 +16,6 @@ public class LoginRepository {
     private FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
     private FirebaseDatabase database =  FirebaseDatabase.getInstance();
     DatabaseReference mRef =  database.getReference().child("Users");
-    private LoginStatusInterface loginStatusInterface;
     public MutableLiveData<User> firebaseSignIn(String email,String password) {
         MutableLiveData<User> authenticatedUserMutableLiveData = new MutableLiveData<>();
 
@@ -36,7 +35,6 @@ public class LoginRepository {
                 authTask.addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        loginStatusInterface.onLoginFail();
 
                         Log.i("repo firebase", "onFailure: "+e.getMessage());
                     }
