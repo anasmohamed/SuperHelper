@@ -22,7 +22,7 @@ public class LoginActivity extends AppCompatActivity {
             Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
 
     Button loginBtn;
-    EditText emailET,passwordET;
+    EditText emailET, passwordET;
     private LoginViewModel loginViewModel;
 
     @Override
@@ -30,8 +30,8 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         loginBtn = (Button) findViewById(R.id.login_btn);
-        emailET = (EditText)findViewById(R.id.email_et_login_view);
-        passwordET = (EditText)findViewById(R.id.password_et_login_view);
+        emailET = (EditText) findViewById(R.id.email_et_login_view);
+        passwordET = (EditText) findViewById(R.id.password_et_login_view);
         loginViewModel = ViewModelProviders.of(this).get(LoginViewModel.class);
 
         loginBtn.setOnClickListener(new View.OnClickListener() {
@@ -40,22 +40,19 @@ public class LoginActivity extends AppCompatActivity {
                 if (emailET.getText().toString().isEmpty()) {
                     emailET.setError("Field cannot be empty");
 
-                } else if (!validateEmail(emailET.getText().toString())){
+                } else if (!validateEmail(emailET.getText().toString())) {
                     emailET.setError("enter valid email");
 
-                }else if(passwordET.getText().toString().isEmpty())
-                {
+                } else if (passwordET.getText().toString().isEmpty()) {
                     passwordET.setError("enter valid password");
 
-                }else
-                {
-                          loginViewModel.login(emailET.getText().toString(), passwordET.getText().toString());
-loginViewModel.authenticatedUserLiveData.observe(LoginActivity.this,authenticatedUser ->{
-    if(!authenticatedUser.getEmail().isEmpty()){
-        Log.i("login anas","success");
-startActivity(new Intent(this,));
-    }
-});
+                } else {
+                    loginViewModel.login(emailET.getText().toString(), passwordET.getText().toString());
+                    loginViewModel.authenticatedUserLiveData.observe(LoginActivity.this, authenticatedUser -> {
+                        if (!authenticatedUser.getEmail().isEmpty()) {
+                            startActivity(new Intent(LoginActivity.this, RequestHelperActivity.class));
+                        }
+                    });
                 }
             }
         });
@@ -67,13 +64,5 @@ startActivity(new Intent(this,));
         return matcher.find();
     }
 
-    @Override
-    public void onLoginSuccess() {
 
-    }
-
-    @Override
-    public void onLoginFail() {
-
-    }
 }
