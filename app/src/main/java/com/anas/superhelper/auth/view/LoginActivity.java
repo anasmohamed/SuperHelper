@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.anas.superhelper.ProfileActivity;
 import com.anas.superhelper.R;
 import com.anas.superhelper.auth.viewmodels.LoginViewModel;
 import com.anas.superhelper.auth.viewmodels.SignUpViewModel;
@@ -50,7 +51,7 @@ public class LoginActivity extends AppCompatActivity {
                     loginViewModel.login(emailET.getText().toString(), passwordET.getText().toString());
                     loginViewModel.authenticatedUserLiveData.observe(LoginActivity.this, authenticatedUser -> {
                         if (!authenticatedUser.getEmail().isEmpty()) {
-                            startActivity(new Intent(LoginActivity.this, RequestHelperActivity.class));
+                            startActivity(new Intent(LoginActivity.this, ProfileActivity.class));
                         }
                     });
                 }

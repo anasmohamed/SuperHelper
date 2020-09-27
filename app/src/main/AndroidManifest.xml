@@ -9,9 +9,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".auth.view.RequestHelperActivity"></activity>
-        <activity android:name=".auth.view.LoginActivity"
-            android:windowSoftInputMode="adjustResize"/>
+        <activity android:name=".ProfileActivity">
+
+        </activity>
+        <activity android:name=".auth.view.RequestHelperActivity" />
+        <activity
+            android:name=".auth.view.LoginActivity"
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".auth.view.SignUpActivity"
             android:windowSoftInputMode="adjustResize" />
