@@ -9,10 +9,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ProfileActivity">
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
-        <activity android:name=".auth.view.RequestHelperActivity" />
+        <activity android:name=".ProfileActivity"></activity>
+
         <activity
             android:name=".auth.view.LoginActivity"
             android:windowSoftInputMode="adjustResize" />
@@ -20,11 +25,7 @@
             android:name=".auth.view.SignUpActivity"
             android:windowSoftInputMode="adjustResize" />
         <activity android:name=".FirstActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
     </application>
 
