@@ -40,7 +40,7 @@ public class LoginRepository {
         return authenticatedUserMutableLiveData;
     }
 
-    public void getUser(ReturnValueResult returnValueResult) {
+    public void getUser(ReturnValueResult<User> returnValueResult) {
         FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
         mRef.child(firebaseUser.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -61,7 +61,8 @@ public class LoginRepository {
         });
     }
 
-    public interface ReturnValueResult {
-        void onResult(User user);
+    @FunctionalInterface
+    public interface ReturnValueResult<T> {
+        void onResult(T object);
     }
 }
