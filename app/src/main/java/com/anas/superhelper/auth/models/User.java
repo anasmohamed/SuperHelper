@@ -26,7 +26,6 @@ public class User implements Serializable, Parcelable {
         this.lastName = lastName;
     }
 
-    @SuppressWarnings("WeakerAccess")
     public String email;
 
     public boolean isAuthenticated;

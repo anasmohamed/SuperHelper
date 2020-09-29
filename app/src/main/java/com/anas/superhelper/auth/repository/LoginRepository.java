@@ -42,7 +42,7 @@ public class LoginRepository {
 
     public void getUser(ReturnValueResult<User> returnValueResult) {
         FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
-        mRef.child(firebaseUser.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+        mRef.child(firebaseUser.getUid()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 User user = new User();
@@ -57,6 +57,7 @@ public class LoginRepository {
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
+                Log.i("firebase myerror",databaseError.getMessage());
             }
         });
     }
