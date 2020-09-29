@@ -17,6 +17,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.anas.superhelper.R;
+import com.anas.superhelper.auth.models.RequestHelper;
 
 public class RequestHelperFragment extends Fragment implements AdapterView.OnItemSelectedListener{
     String[] whoIsTheHelpFor = { "Individual Male", "Individual Female", "Couple"};
@@ -51,7 +52,16 @@ Button getLocationBtn;
         getLocationBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-startActivity(new Intent(getActivity(),MapsFragment.class));
+                RequestHelper requestHelper = new RequestHelper();
+                requestHelper.setLatitude(getArguments().getString(""));
+                requestHelper.setLatitude(getArguments().getString(""));
+requestHelper.setRelevantTags(relevantTagsET.getText().toString());
+requestHelper.setRequestTitle(requestTitleET.getText().toString());
+requestHelper.setRequestDetails(requestDetailsET.getText().toString());
+requestHelper.setWhatYouNeedHelpWith(whatYouNeedHelpWithText);
+requestHelper.setWhoIsTheHelpFor(whoIsTheHelpForText);
+
+                startActivity(new Intent(getActivity(),MapsFragment.class));
             }
         });
         return view;

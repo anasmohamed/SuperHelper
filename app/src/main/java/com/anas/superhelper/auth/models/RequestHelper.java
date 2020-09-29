@@ -8,7 +8,9 @@ public class RequestHelper {
     String whatYouNeedHelpWith;
     String latitude;
     String longitude;
+public RequestHelper(){
 
+    }
     public RequestHelper(String relevantTags, String requestTitle, String requestDetails, String whoIsTheHelpFor, String whatYouNeedHelpWith, String latitude, String longitude) {
         this.relevantTags = relevantTags;
         this.requestTitle = requestTitle;
