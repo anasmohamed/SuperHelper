@@ -16,7 +16,7 @@ public class RequestHelperRepository {
     public void insertHelperRequestData(RequestHelper requestHelper) {
         FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
 
-        mRef.child("users").child(firebaseUser.getUid()).child("requests").push().setValue(requestHelper);
+        mRef.child(firebaseUser.getUid()).child("requests").push().setValue(requestHelper);
 
     }
 }

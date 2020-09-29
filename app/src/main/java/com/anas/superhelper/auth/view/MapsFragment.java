@@ -14,6 +14,7 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentSender;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
@@ -102,8 +103,13 @@ public class MapsFragment extends AppCompatActivity implements OnMapReadyCallbac
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MapsFragment.this, MainActivity.class);
-                intent.putExtra("latitude",currentLocation.getLatitude());
-                intent.putExtra("longitude",currentLocation.getLongitude());
+//                intent.putExtra("latitude",currentLocation.getLatitude());
+//                intent.putExtra("longitude",currentLocation.getLongitude());
+                //public static final String MY_PREFS_NAME = "MyPrefsFile";
+                SharedPreferences.Editor editor = getSharedPreferences("location", MODE_PRIVATE).edit();
+                editor.putString("latitude", String.valueOf(currentLocation.getLatitude()));
+                editor.putString("longitude", String.valueOf(currentLocation.getLongitude()));
+                editor.apply();
 startActivity(intent);
             }
         });
