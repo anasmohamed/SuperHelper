@@ -6,8 +6,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.anas.superhelper.auth.models.RequestHelper;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Consumer;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -21,16 +24,14 @@ import butterknife.OnClick;
 
 public class RequestRecycleAdapter extends RecyclerView.Adapter<RequestRecycleAdapter.ViewHolder> {
 
-//    private List<Medicine> medicineList;
-    private MedicineClickListener mMedicineClickListener;
+    private List<RequestHelper> requestHelperList;
+    private  Consumer<RequestHelper>  requestHelperClickListener;
     private Context mContext;
 
-    public RequestRecycleAdapter(Context context,
-//                                 List<Medicine> medicines,
-                                 MedicineClickListener medicineClickListener) {
-//        this.medicineList = new ArrayList<>();
-//        medicineList.addAll(medicines);
-        mMedicineClickListener = medicineClickListener;
+    public RequestRecycleAdapter(Context context, List<RequestHelper> requestHelperList, Consumer<RequestHelper> requestHelperClickListener) {
+        this.requestHelperList = new ArrayList<>();
+        this.requestHelperList.addAll(requestHelperList);
+        this.requestHelperClickListener = requestHelperClickListener;
         this.mContext = context;
     }
 
@@ -50,28 +51,32 @@ public class RequestRecycleAdapter extends RecyclerView.Adapter<RequestRecycleAd
 
     @Override
     public int getItemCount() {
-//        return medicineList.size();
-        return 0;
+        return requestHelperList.size();
     }
 
 
-    public void addList(
-//            List<Medicine> medicineListIncoming
-    ) {
-//        medicineList.clear();
-//        medicineList.addAll(medicineListIncoming);
+    public void addList(List<RequestHelper> incomingRequestHelperList) {
+        requestHelperList.clear();
+        requestHelperList.addAll(incomingRequestHelperList);
         notifyDataSetChanged();
 
     }
 
 
-//    private Medicine getMedicine(int position) {
-////        return medicineList.get(position);
-//    }
-
+    private RequestHelper getRequestHelper(int position) {
+        return requestHelperList.get(position);
+    }
     class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        @BindView(R.id.name_textView)
-        TextView medicineName;
+        @BindView(R.id.request_title_textView)
+        TextView requestTitle;
+        @BindView(R.id.request_details_textView)
+        TextView requestDetails;
+        @BindView(R.id.who_is_the_help_for_textView)
+        TextView whoIsTheHelpFor;
+        @BindView(R.id.what_you_need_help_with_textView)
+        TextView whatYouNeedHelpWith;
+        @BindView(R.id.relevant_tags_textView)
+        TextView relevantTags;
 
         ViewHolder(View itemView) {
             super(itemView);
@@ -79,17 +84,18 @@ public class RequestRecycleAdapter extends RecyclerView.Adapter<RequestRecycleAd
         }
 
         void bind(int position) {
-//            medicineName.setText(getMedicine(position).getName());
+            requestTitle.setText(getRequestHelper(position).getRequestTitle());
+            requestDetails.setText(getRequestHelper(position).getRequestDetails());
+            whoIsTheHelpFor.setText(getRequestHelper(position).getWhoIsTheHelpFor());
+            whatYouNeedHelpWith.setText(getRequestHelper(position).getWhatYouNeedHelpWith());
+            relevantTags.setText(getRequestHelper(position).getRelevantTags());
         }
 
 
         @OnClick
         public void onClick(View v) {
-//            mMedicineClickListener.onMedicineClick(getMedicine(getAdapterPosition()));
+            requestHelperClickListener.accept(getRequestHelper(getAdapterPosition()));
         }
     }
 
-    public interface MedicineClickListener {
-//        void onMedicineClick(Medicine medicine);
-    }
 }

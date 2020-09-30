@@ -3,8 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="5dp"
-    android:background="@drawable/recycle_item"
     android:orientation="horizontal"
+    android:background="@drawable/recycle_item"
     android:paddingStart="1dp"
     android:paddingLeft="1dp">
 
@@ -14,15 +14,73 @@
         android:background="@drawable/rounded_line" />
 
 
-    <TextView
-        android:id="@+id/name_textView"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Panadol"
-        android:padding="5dp"
-        android:textSize="25sp"
-        android:textStyle="bold"
-        android:layout_gravity="center"/>
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/request_title_textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:padding="5dp"
+            android:text="Heeeelp"
+            android:textAlignment="center"
+            android:textSize="25sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/who_is_the_help_for_textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="5dp"
+            android:paddingLeft="5dp"
+            android:paddingTop="1dp"
+            android:paddingEnd="5dp"
+            android:paddingRight="5dp"
+            android:paddingBottom="1dp"
+            android:text="TextView"
+            android:textAlignment="center" />
+
+        <TextView
+            android:id="@+id/request_details_textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="5dp"
+            android:paddingLeft="5dp"
+            android:paddingTop="1dp"
+            android:paddingEnd="5dp"
+            android:paddingRight="5dp"
+            android:paddingBottom="1dp"
+            android:text="TextView" />
+
+        <TextView
+            android:id="@+id/what_you_need_help_with_textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="5dp"
+            android:paddingLeft="5dp"
+            android:paddingTop="1dp"
+            android:paddingEnd="5dp"
+            android:paddingRight="5dp"
+            android:paddingBottom="1dp"
+            android:text="TextView" />
+
+        <TextView
+            android:id="@+id/relevant_tags_textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="5dp"
+            android:paddingLeft="5dp"
+            android:paddingTop="1dp"
+            android:paddingEnd="5dp"
+            android:paddingRight="5dp"
+            android:paddingBottom="1dp"
+            android:text="TextView"
+            android:textAlignment="textEnd"
+            android:textSize="12sp" />
+    </LinearLayout>
 
 
 </LinearLayout>
