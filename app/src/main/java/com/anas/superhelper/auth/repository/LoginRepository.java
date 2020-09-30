@@ -15,6 +15,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.function.Consumer;
+
 public class LoginRepository {
     private FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -40,7 +42,7 @@ public class LoginRepository {
         return authenticatedUserMutableLiveData;
     }
 
-    public void getUser(ReturnValueResult<User> returnValueResult) {
+    public void getUser(Consumer<User> returnValueResult) {
         FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
         mRef.child(firebaseUser.getUid()).addValueEventListener(new ValueEventListener() {
             @Override
@@ -52,7 +54,7 @@ public class LoginRepository {
                 user.setPhone(dataSnapshot.child("phone").getValue(String.class));
                 user.setDate(dataSnapshot.child("date").getValue(String.class));
                 user.setEmail(dataSnapshot.child("email").getValue(String.class));
-                returnValueResult.onResult(user);
+                returnValueResult.accept(user);
             }
 
             @Override

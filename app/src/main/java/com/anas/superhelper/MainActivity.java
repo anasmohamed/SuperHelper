@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
             switch (item.getItemId()) {
                 case R.id.home:
                    // toolbar.setTitle("Shop");
-                    fragment = new RequestHelperFragment();
+                    fragment = new HomeFragment();
                     loadFragment(fragment);
 
                     return true;
