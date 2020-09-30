@@ -18,7 +18,7 @@ public class RequestHelperViewModel extends ViewModel {
         }
     }
 
-    public void login(String email, String password) {
-      //  requestHelperLiveData  = requestHelperRepository.insertHelperRequestData();
+    public void insertHelperRequestData(RequestHelper requestHelper) {
+           requestHelperRepository.insertHelperRequestData(requestHelper);
     }
 }
