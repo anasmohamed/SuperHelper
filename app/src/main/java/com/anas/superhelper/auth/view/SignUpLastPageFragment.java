@@ -1,12 +1,13 @@
 package com.anas.superhelper.auth.view;
 
+import android.Manifest;
 import android.app.DatePickerDialog;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.os.Build;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.lifecycle.ViewModelProviders;
-
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +17,11 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Toast;
+
+import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProviders;
 
 import com.anas.superhelper.R;
 import com.anas.superhelper.auth.models.User;
@@ -23,26 +29,32 @@ import com.anas.superhelper.auth.viewmodels.SignUpViewModel;
 
 import java.util.Calendar;
 
+import static android.app.Activity.RESULT_OK;
+
 
 public class SignUpLastPageFragment extends Fragment {
-    Button signUpBtn;
-    private SignUpViewModel signUpViewModel;
+    Button signUpBtn, takePhotoBtn;
     EditText phoneNumberET, dateET;
     User user;
+    int TAKE_PHOTO_CODE = 0;
+    int REQUEST_CAMERA_PERMISSION = 1;
+    boolean isIdImageTaken = false;
+    private SignUpViewModel signUpViewModel;
     private RadioGroup radioGenderGroup;
     private RadioButton radioButton;
     private int mYear, mMonth, mDay;
-
+    Bitmap photo;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_sign_up_last_page, container, false);
-        signUpBtn = (Button) view.findViewById(R.id.sign_up_btn_sign_up_last_page);
-        phoneNumberET = (EditText) view.findViewById(R.id.phone_number_et_sign_up_last_page);
-        dateET = (EditText) view.findViewById(R.id.date_of_birth_sign_up_last_page);
-        radioGenderGroup = (RadioGroup) view.findViewById(R.id.gender_radio_group_sign_up_last_page);
 
+        signUpBtn = view.findViewById(R.id.sign_up_btn_sign_up_last_page);
+        phoneNumberET = view.findViewById(R.id.phone_number_et_sign_up_last_page);
+        dateET = view.findViewById(R.id.date_of_birth_sign_up_last_page);
+        radioGenderGroup = view.findViewById(R.id.gender_radio_group_sign_up_last_page);
+        takePhotoBtn = view.findViewById(R.id.take_photo_id_card_btn);
         dateET.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -52,7 +64,7 @@ public class SignUpLastPageFragment extends Fragment {
                 mMonth = c.get(Calendar.MONTH);
                 mDay = c.get(Calendar.DAY_OF_MONTH);
                 int selectedId = radioGenderGroup.getCheckedRadioButtonId();
-                radioButton = (RadioButton) view.findViewById(selectedId);
+                radioButton = view.findViewById(selectedId);
 
 
                 DatePickerDialog datePickerDialog = new DatePickerDialog(getActivity(),
@@ -80,15 +92,60 @@ public class SignUpLastPageFragment extends Fragment {
                 } else if (dateET.getText().toString().isEmpty()) {
                     dateET.setError("Field cannot be empty");
 
-
+                } else if (!isIdImageTaken) {
+                    Toast.makeText(getContext(), "you should upload your personal id image", Toast.LENGTH_LONG).show();
                 } else {
                     user.setDate(dateET.getText().toString());
                     user.setPhone(phoneNumberET.getText().toString());
                     user.setGender(radioButton.getText().toString());
                     signUpViewModel.signUp(user);
+                    signUpViewModel.uploadIdImage(photo,user.getEmail());
                 }
             }
         });
+        takePhotoBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                myCameraPermission();
+            }
+        });
         return view;
+    }
+
+    //+10 changed its sinature as Fragment; without it  onRequestPermissionsResult won't bbe called
+    private void myCameraPermission() {
+        if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
+            takePicture();
+        } else {
+            //changed here
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                requestPermissions(new String[]{Manifest.permission.CAMERA}, REQUEST_CAMERA_PERMISSION);
+                takePicture();
+
+            }
+        }
+    }
+
+    private void takePicture() {
+
+        Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        startActivityForResult(cameraIntent, TAKE_PHOTO_CODE);
+    }
+
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == TAKE_PHOTO_CODE && resultCode == RESULT_OK ) {
+            Log.d("CameraDemo", data.getExtras().get("data").toString());
+            isIdImageTaken = true;
+            photo = (Bitmap)data.getExtras()
+                    .get("data");
+            Log.d("CameraDemo", photo.toString());
+//
+//            user.setIdImage(data.getExtras()
+//                    .get("data"));
+        }
     }
 }

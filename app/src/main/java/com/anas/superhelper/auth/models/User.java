@@ -1,14 +1,40 @@
 package com.anas.superhelper.auth.models;
 
+import android.graphics.Bitmap;
 import android.os.Parcel;
 import android.os.Parcelable;
 
 import java.io.Serializable;
 
 public class User implements Serializable, Parcelable {
-    public String uid;
-    public String firstName;
-    public String lastName;
+    boolean isNew, isCreated;
+    private String uid;
+    private String firstName;
+    private String lastName;
+    private String email;
+    private boolean isAuthenticated;
+    private String password;
+    private String date;
+    private String gender;
+    private String phone;
+//    private Object idImage;
+    public User() {
+    }
+
+    public User(String firstName, String lastName, String email, String password, String date, String phone, String gender) {
+        this.email = email;
+    }
+
+    public User(Parcel in) {
+        this.email = in.readString();
+        this.firstName = in.readString();
+        this.lastName = in.readString();
+        this.password = in.readString();
+        this.gender = in.readString();
+        this.phone = in.readString();
+        this.date = in.readString();
+
+    }
 
     public String getFirstName() {
         return firstName;
@@ -26,13 +52,13 @@ public class User implements Serializable, Parcelable {
         this.lastName = lastName;
     }
 
-    public String email;
-
-    public boolean isAuthenticated;
-   private String password;
-   private String date;
-   private String gender;
-   private String phone;
+//    public Object getIdImage() {
+//        return idImage;
+//    }
+//
+//    public void setIdImage(Object idImage) {
+//        this.idImage = idImage;
+//    }
 
     public String getPassword() {
         return password;
@@ -66,23 +92,6 @@ public class User implements Serializable, Parcelable {
         this.phone = phone;
     }
 
-    boolean isNew, isCreated;
-
-    public User() {}
-
-    public User(String firstName, String lastName, String email,String password,String date,String phone,String gender) {
-        this.email = email;
-    }
-    public User(Parcel in) {
-        this.email = in.readString();
-        this.firstName = in.readString();
-        this.lastName = in.readString();
-        this.password = in.readString();
-        this.gender = in.readString();
-        this.phone = in.readString();
-        this.date = in.readString();
-
-    }
     public String getUid() {
         return uid;
     }
@@ -138,7 +147,6 @@ public class User implements Serializable, Parcelable {
         dest.writeString(this.date);
         dest.writeString(this.gender);
         dest.writeString(this.phone);
-
 
 
     }

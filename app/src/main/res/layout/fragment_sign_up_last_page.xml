@@ -46,7 +46,6 @@
         android:layout_marginTop="32dp"
         android:layout_marginEnd="16dp"
         android:ems="10"
-        android:enabled="false"
         android:hint="enter your data of birth"
         android:inputType="date"
         app:layout_constraintEnd_toEndOf="parent"
@@ -107,12 +106,22 @@
             android:id="@+id/female_radio_btn_sign_up_last_page"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="femal"
+            android:text="female"
             android:layout_marginTop="20dp"
             tools:layout_editor_absoluteX="31dp"
             tools:layout_editor_absoluteY="232dp"
             tools:text="Female" />
     </RadioGroup>
+
+    <Button
+        android:id="@+id/take_photo_id_card_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="Take Pic for your ID Card"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/gender_radio_group_sign_up_last_page" />
 
     <TextView
         android:id="@+id/email_subscribe_text"
@@ -123,8 +132,9 @@
         android:layout_marginEnd="16dp"
         android:text="please click here if you would like to receive our monthly newsletter via email which provide our members with updates and useful information. you can unsubscribe from this email at any time"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/gender_radio_group_sign_up_last_page" />
+        app:layout_constraintTop_toBottomOf="@+id/take_photo_id_card_btn" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -42,19 +42,20 @@ public class SignUpThirdPageFragment extends Fragment {
         nextFragmentBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (passwordET.getText().toString().isEmpty()) {
-                    passwordET.setError("Field cannot be empty");
-                } else if (confirmPasswordET.getText().toString().isEmpty()) {
-                    confirmPasswordET.setError("Field cannot be empty");
-
-
-                } else if (confirmPasswordET.getText().toString().equals(passwordET.getText().toString())) {
-                    confirmPasswordET.setError("Fields must be equal");
-                    passwordET.setError("Fields must be equal");
-                } else if (!validate(passwordET.getText().toString())){
-                    passwordET.setError("enter valid email");
-
-                }else{
+//                if (passwordET.getText().toString().isEmpty()) {
+//                    passwordET.setError("Field cannot be empty");
+//                } else if (confirmPasswordET.getText().toString().isEmpty()) {
+//                    confirmPasswordET.setError("Field cannot be empty");
+//
+//
+//                } else if (confirmPasswordET.getText().toString().equals(passwordET.getText().toString())) {
+//                    confirmPasswordET.setError("Fields must be equal");
+//                    passwordET.setError("Fields must be equal");
+//                } else if (!validate(passwordET.getText().toString())){
+//                    passwordET.setError("enter valid email");
+//
+//                }
+//                  else{
                     FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                     FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                     fragmentTransaction.replace(R.id.frameLayout, signUpLastFragment);
@@ -63,7 +64,7 @@ public class SignUpThirdPageFragment extends Fragment {
                     bundle.putParcelable("user",user);
                     signUpLastFragment.setArguments(bundle);
                     fragmentTransaction.commit();
-                }
+//                }
 
             }
         });
