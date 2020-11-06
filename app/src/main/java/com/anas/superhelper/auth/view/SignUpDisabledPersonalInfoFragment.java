@@ -1,6 +1,10 @@
 package com.anas.superhelper.auth.view;
 
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.Spanned;
+import android.text.TextWatcher;
+import android.text.style.ImageSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,16 +17,18 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.anas.superhelper.R;
 import com.anas.superhelper.auth.models.User;
-import com.hootsuite.nachos.NachoTextView;
+import com.google.android.material.chip.ChipDrawable;
 
 
 public class SignUpDisabledPersonalInfoFragment extends Fragment {
-    EditText addressEditText, jobEditText, disabledTypeEditText;
-    NachoTextView interestsTextView;
+    EditText addressEditText, jobEditText, disabledTypeEditText,interestsEditText;
+
     Button nextBtn;
     Fragment signUpLastFragment;
     Bundle bundle;
     User user;
+    private int SpannedLength = 0,chipLength = 4;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -30,13 +36,41 @@ public class SignUpDisabledPersonalInfoFragment extends Fragment {
         addressEditText = (EditText) view.findViewById(R.id.address_et);
         jobEditText = (EditText) view.findViewById(R.id.job_et);
         disabledTypeEditText = (EditText) view.findViewById(R.id.disabled_type_et);
-        interestsTextView = (NachoTextView) view.findViewById(R.id.interests_text_view);
+        interestsEditText = (EditText) view.findViewById(R.id.interests_text_view);
         nextBtn = (Button) view.findViewById(R.id.next_btn_disabled_personal_info);
 
         signUpLastFragment = new SignUpLastPageFragment();
         bundle = new Bundle();
         user = getArguments().getParcelable("user");
+        interestsEditText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                if (charSequence.length() == SpannedLength - chipLength)
+                {
+                    SpannedLength = charSequence.length();
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+                if(editable.length() - SpannedLength == chipLength) {
+                    ChipDrawable chip = ChipDrawable.createFromResource(getContext(), R.xml.chip);
+                    chip.setText(editable.subSequence(SpannedLength,editable.length()));
+
+                    chip.setBounds(0, 0, chip.getIntrinsicWidth(), chip.getIntrinsicHeight());
+                    ImageSpan span = new ImageSpan(chip);
+                    editable.setSpan(span, SpannedLength, editable.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                    SpannedLength = editable.length();
+                }
+
+            }
+        });
         nextBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -54,7 +88,7 @@ public class SignUpDisabledPersonalInfoFragment extends Fragment {
                     user.setJob(jobEditText.getText().toString());
                     user.setAddress(addressEditText.getText().toString());
                     user.setDisabledType(disabledTypeEditText.getText().toString());
-                    user.setInterests(interestsTextView.getText().toString().isEmpty() ? interestsTextView.getText().toString() : "");
+                    user.setInterests(interestsEditText.getText().toString().isEmpty() ? interestsEditText.getText().toString() : "");
                     bundle.putParcelable("user",user);
                     signUpLastFragment.setArguments(bundle);
                     fragmentTransaction.commit();
