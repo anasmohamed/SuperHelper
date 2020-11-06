@@ -26,7 +26,7 @@ public class SignUpThirdPageFragment extends Fragment {
     EditText passwordET,confirmPasswordET;
     User user;
     Bundle bundle;
-    Fragment signUpLastFragment;
+    Fragment signUpDisabledPersonalInfoFragment;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -36,7 +36,7 @@ public class SignUpThirdPageFragment extends Fragment {
         nextFragmentBtn = (Button)view.findViewById(R.id.next_btn_sign_up_third_page);
         passwordET = (EditText) view.findViewById(R.id.password_et_sign_up_third_page);
         confirmPasswordET = (EditText)view.findViewById(R.id.confirm_password_et_sign_up_third_page);
-        signUpLastFragment = new SignUpLastPageFragment();
+        signUpDisabledPersonalInfoFragment = new SignUpDisabledPersonalInfoFragment();
         bundle = new Bundle();
         user = getArguments().getParcelable("user");
         nextFragmentBtn.setOnClickListener(new View.OnClickListener() {
@@ -58,11 +58,11 @@ public class SignUpThirdPageFragment extends Fragment {
 //                  else{
                     FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                     FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                    fragmentTransaction.replace(R.id.frameLayout, signUpLastFragment);
+                    fragmentTransaction.replace(R.id.frameLayout, signUpDisabledPersonalInfoFragment);
                     fragmentTransaction.addToBackStack(null);
                     user.setPassword(passwordET.getText().toString());
                     bundle.putParcelable("user",user);
-                    signUpLastFragment.setArguments(bundle);
+                    signUpDisabledPersonalInfoFragment.setArguments(bundle);
                     fragmentTransaction.commit();
 //                }
 

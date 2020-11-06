@@ -17,7 +17,44 @@ public class User implements Serializable, Parcelable {
     private String date;
     private String gender;
     private String phone;
-//    private Object idImage;
+    private String disabledType;
+    private String job;
+    private String address;
+    private String Interests;
+
+    public String getDisabledType() {
+        return disabledType;
+    }
+
+    public void setDisabledType(String disabledType) {
+        this.disabledType = disabledType;
+    }
+
+    public String getJob() {
+        return job;
+    }
+
+    public void setJob(String job) {
+        this.job = job;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getInterests() {
+        return Interests;
+    }
+
+    public void setInterests(String interests) {
+        Interests = interests;
+    }
+
+    //    private Object idImage;
     public User() {
     }
 
