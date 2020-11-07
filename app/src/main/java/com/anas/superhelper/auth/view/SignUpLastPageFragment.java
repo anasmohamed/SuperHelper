@@ -55,6 +55,7 @@ public class SignUpLastPageFragment extends Fragment {
         dateET = view.findViewById(R.id.date_of_birth_sign_up_last_page);
         radioGenderGroup = view.findViewById(R.id.gender_radio_group_sign_up_last_page);
         takePhotoBtn = view.findViewById(R.id.take_photo_id_card_btn);
+        dateET.setKeyListener(null);
         dateET.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

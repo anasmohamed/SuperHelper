@@ -5,6 +5,7 @@ import android.text.Editable;
 import android.text.Spanned;
 import android.text.TextWatcher;
 import android.text.style.ImageSpan;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,7 +33,6 @@ public class SignUpDisabledPersonalInfoFragment extends Fragment {
     Fragment signUpLastFragment;
     Bundle bundle;
     User user;
-    private int SpannedLength = 0,chipLength = 4;
     String[] values = {"coutinho","suarez","messi","ronaldo","silva","aguero"};
 
     @Override
@@ -51,40 +51,12 @@ public class SignUpDisabledPersonalInfoFragment extends Fragment {
         signUpLastFragment = new SignUpLastPageFragment();
         bundle = new Bundle();
         user = getArguments().getParcelable("user");
-//        interestsEditText.addTextChangedListener(new TextWatcher() {
-//            @Override
-//            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-//
-//            }
-//
-//            @Override
-//            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-//                if (charSequence.length() == SpannedLength - chipLength)
-//                {
-//                    SpannedLength = charSequence.length();
-//                }
-//            }
-//
-//            @Override
-//            public void afterTextChanged(Editable editable) {
-//
-//                if(editable.length() - SpannedLength == chipLength) {
-//
-//                    ChipDrawable chip = ChipDrawable.createFromResource(getContext(), R.xml.chip);
-//                    chip.setText(editable.subSequence(SpannedLength,editable.length()));
-//
-//                    chip.setBounds(0, 0, chip.getIntrinsicWidth(), chip.getIntrinsicHeight());
-//                    ImageSpan span = new ImageSpan(chip);
-//                    editable.setSpan(span, SpannedLength, editable.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-//                    SpannedLength = editable.length();
-//
-//                }
-//
-//            }
-//        });
+
         nextBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Log.i("chips",interestsEditText.getText().toString());
+
                 if (addressEditText.getText().toString().isEmpty()) {
                     addressEditText.setError("Field cannot be empty");
                 } else if (jobEditText.getText().toString().isEmpty()) {
@@ -99,7 +71,7 @@ public class SignUpDisabledPersonalInfoFragment extends Fragment {
                     user.setJob(jobEditText.getText().toString());
                     user.setAddress(addressEditText.getText().toString());
                     user.setDisabledType(disabledTypeEditText.getText().toString());
-                    user.setInterests(interestsEditText.getText().toString().isEmpty() ? interestsEditText.getText().toString() : "");
+                    user.setInterests(interestsEditText.getText().toString().isEmpty() ? "" :interestsEditText.getText().toString());
                     bundle.putParcelable("user",user);
                     signUpLastFragment.setArguments(bundle);
                     fragmentTransaction.commit();
