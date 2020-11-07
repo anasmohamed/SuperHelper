@@ -10,24 +10,30 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.MultiAutoCompleteTextView;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.anas.superhelper.R;
+import com.anas.superhelper.androidchipbubbletext.ChipBubbleText;
 import com.anas.superhelper.auth.models.User;
+import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipDrawable;
+import com.tylersuehr.chips.ChipsInputLayout;
 
 
 public class SignUpDisabledPersonalInfoFragment extends Fragment {
-    EditText addressEditText, jobEditText, disabledTypeEditText,interestsEditText;
+    EditText addressEditText, jobEditText, disabledTypeEditText;
+    MultiAutoCompleteTextView interestsEditText;
 
     Button nextBtn;
     Fragment signUpLastFragment;
     Bundle bundle;
     User user;
     private int SpannedLength = 0,chipLength = 4;
+    String[] values = {"coutinho","suarez","messi","ronaldo","silva","aguero"};
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -36,41 +42,46 @@ public class SignUpDisabledPersonalInfoFragment extends Fragment {
         addressEditText = (EditText) view.findViewById(R.id.address_et);
         jobEditText = (EditText) view.findViewById(R.id.job_et);
         disabledTypeEditText = (EditText) view.findViewById(R.id.disabled_type_et);
-        interestsEditText = (EditText) view.findViewById(R.id.interests_text_view);
+        interestsEditText = (MultiAutoCompleteTextView) view.findViewById(R.id.interests_text_view);
         nextBtn = (Button) view.findViewById(R.id.next_btn_disabled_personal_info);
-
+        ChipBubbleText cp = new ChipBubbleText(getActivity(), interestsEditText, values, 1);
+        cp.setChipColor("#9999FF");
+        cp.setChipTextSize(20);
+        cp.initialize();
         signUpLastFragment = new SignUpLastPageFragment();
         bundle = new Bundle();
         user = getArguments().getParcelable("user");
-        interestsEditText.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                if (charSequence.length() == SpannedLength - chipLength)
-                {
-                    SpannedLength = charSequence.length();
-                }
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-
-                if(editable.length() - SpannedLength == chipLength) {
-                    ChipDrawable chip = ChipDrawable.createFromResource(getContext(), R.xml.chip);
-                    chip.setText(editable.subSequence(SpannedLength,editable.length()));
-
-                    chip.setBounds(0, 0, chip.getIntrinsicWidth(), chip.getIntrinsicHeight());
-                    ImageSpan span = new ImageSpan(chip);
-                    editable.setSpan(span, SpannedLength, editable.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-                    SpannedLength = editable.length();
-                }
-
-            }
-        });
+//        interestsEditText.addTextChangedListener(new TextWatcher() {
+//            @Override
+//            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+//
+//            }
+//
+//            @Override
+//            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+//                if (charSequence.length() == SpannedLength - chipLength)
+//                {
+//                    SpannedLength = charSequence.length();
+//                }
+//            }
+//
+//            @Override
+//            public void afterTextChanged(Editable editable) {
+//
+//                if(editable.length() - SpannedLength == chipLength) {
+//
+//                    ChipDrawable chip = ChipDrawable.createFromResource(getContext(), R.xml.chip);
+//                    chip.setText(editable.subSequence(SpannedLength,editable.length()));
+//
+//                    chip.setBounds(0, 0, chip.getIntrinsicWidth(), chip.getIntrinsicHeight());
+//                    ImageSpan span = new ImageSpan(chip);
+//                    editable.setSpan(span, SpannedLength, editable.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+//                    SpannedLength = editable.length();
+//
+//                }
+//
+//            }
+//        });
         nextBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
