@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 
@@ -39,6 +40,9 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.notification:
                   //  toolbar.setTitle("My Gifts");
                     return true;
+                case R.id.account:
+                    fragment = new ProfileFragment();
+                    loadFragment(fragment);
 //                case R.id.navigation_cart:
 //                    toolbar.setTitle("Cart");
 //                    return true;

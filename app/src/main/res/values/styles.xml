@@ -13,7 +13,10 @@
     <style name="ChipTextApperance" parent="Theme.MaterialComponents.Light.Bridge">
         <item name="android:textColor">@android:color/white</item>
     </style>
-
+    <style name="MyFabStyle" parent="Widget.MaterialComponents.FloatingActionButton">
+        <item name="backgroundTint">@color/colorAccent</item>
+        <item name="rippleColor">#0d9bed</item>
+    </style>
     <!--styles for profile-->
     <style name="AppTheme.ProfileTheme">
         <item name="colorPrimaryDark">@color/profilePrimaryDark</item>

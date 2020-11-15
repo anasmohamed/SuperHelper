@@ -17,6 +17,10 @@ public class RequestHelperViewModel extends ViewModel {
     public LiveData<RequestHelper> requestHelperLiveData;
     private LiveData<List<RequestHelper>> requestHelperLiveDataList;
 
+    public LiveData<List<RequestHelper>> getRequestHelperLiveDataList() {
+        return requestHelperLiveDataList;
+    }
+
     public RequestHelperViewModel() {
         super();
         if (requestHelperRepository == null) {
@@ -27,7 +31,13 @@ public class RequestHelperViewModel extends ViewModel {
     public void insertHelperRequestData(RequestHelper requestHelper) {
         requestHelperRepository.insertHelperRequestData(requestHelper);
     }
-
+//    public  getRequests() {
+//        if (requestHelperLiveDataList == null) {
+//            requestHelperRepository.getRequests(requestHelpers -> {
+//                requestHelperLiveDataList = new MutableLiveData<>(requestHelpers);
+//            });
+//        }
+//    }
     public void getRequests(boolean forceUpdate, Consumer<LiveData<List<RequestHelper>>> returnedLiveData) {
         if (requestHelperLiveDataList == null || forceUpdate) {
             requestHelperRepository.getRequests(requestHelpers -> {
@@ -38,4 +48,5 @@ public class RequestHelperViewModel extends ViewModel {
             returnedLiveData.accept(requestHelperLiveDataList);
         }
     }
+
 }

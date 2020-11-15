@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context=".ProfileActivity"
+    tools:context=".ProfileFragment"
     android:background="@color/profileBackground">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -35,17 +35,39 @@
                     android:orientation="vertical"
                     android:id="@+id/linearLayout"
                     android:background="@drawable/profile_bk">
-                    <de.hdodenhof.circleimageview.CircleImageView
-                        android:id="@+id/profile_image_textView"
+                    <RelativeLayout
                         android:layout_width="wrap_content"
-                        android:layout_height="150dp"
-                        android:layout_marginEnd="32dp"
-                        android:layout_marginStart="32dp"
-                        android:layout_marginTop="8dp"
-                        app:civ_border_color="@color/colorPrimary"
-                        app:civ_border_width="2dp"
-                        android:src="@drawable/abasha"/>
+                        android:layout_height="wrap_content">
 
+
+                        <de.hdodenhof.circleimageview.CircleImageView
+                            android:id="@+id/profile_image_textView"
+                            android:layout_width="230dp"
+                            android:layout_height="150dp"
+                            android:layout_marginStart="32dp"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginEnd="32dp"
+                            android:src="@drawable/abasha"
+                            app:civ_border_color="@color/colorPrimary"
+                            app:civ_border_width="2dp" />
+
+                        <com.google.android.material.floatingactionbutton.FloatingActionButton
+                            android:id="@+id/change_profile_image_btn"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_alignEnd="@+id/profile_image_textView"
+                            android:layout_alignParentTop="true"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="16dp"
+                            app:fabCustomSize="40dp"
+                            android:contentDescription="ae"
+                            style="@style/MyFabStyle"
+android:src="@drawable/baseline_edit_black_24"
+
+                            android:layout_marginEnd="30dp"
+                            android:layout_marginBottom="16dp" />
+
+                    </RelativeLayout>
                     <TextView
                         android:id="@+id/profile_name_title_textView"
                         android:layout_width="wrap_content"

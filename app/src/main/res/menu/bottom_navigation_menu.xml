@@ -10,4 +10,9 @@
         android:enabled="true"
         android:icon="@drawable/ic_baseline_notifications_24"
         android:title="notification"/>
+    <item
+        android:id="@+id/account"
+        android:enabled="true"
+        android:icon="@drawable/ic_baseline_account_circle_24"
+        android:title="account"/>
 </menu>

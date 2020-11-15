@@ -5,16 +5,13 @@ import androidx.lifecycle.ViewModelProviders;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
 import com.anas.superhelper.MainActivity;
-import com.anas.superhelper.ProfileActivity;
 import com.anas.superhelper.R;
 import com.anas.superhelper.auth.viewmodels.LoginViewModel;
-import com.anas.superhelper.auth.viewmodels.SignUpViewModel;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
