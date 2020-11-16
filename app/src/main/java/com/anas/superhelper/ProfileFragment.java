@@ -1,20 +1,27 @@
 package com.anas.superhelper;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.provider.MediaStore;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.anas.superhelper.auth.models.User;
-import com.anas.superhelper.auth.repository.LoginRepository;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.firebase.auth.FirebaseAuth;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProviders;
+
+import com.anas.superhelper.auth.models.User;
+import com.anas.superhelper.auth.viewmodels.ProfileViewModel;
+import com.google.firebase.auth.FirebaseAuth;
+import com.squareup.picasso.Picasso;
+
+import java.io.IOException;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -22,36 +29,33 @@ import butterknife.OnClick;
 import butterknife.Unbinder;
 import de.hdodenhof.circleimageview.CircleImageView;
 
-import static android.app.Activity.RESULT_OK;
-
 public class ProfileFragment extends Fragment {
-    @BindView(R.id.profile_image_textView)
+    @BindView(R2.id.profile_image_textView)
     CircleImageView photo;
-    @BindView(R.id.profile_name_title_textView)
+    @BindView(R2.id.profile_name_title_textView)
     TextView nameTitle;
-    @BindView(R.id.profile_name_textView)
+    @BindView(R2.id.profile_name_textView)
     TextView name;
-    @BindView(R.id.profile_phone_textView)
+    @BindView(R2.id.profile_phone_textView)
     TextView phone;
-    @BindView(R.id.profile_email_textView)
+    @BindView(R2.id.profile_email_textView)
     TextView email;
-    @BindView(R.id.profile_birth_date_textView)
+    @BindView(R2.id.profile_birth_date_textView)
     TextView birthDate;
-    @BindView(R.id.profile_gender_textView)
+    @BindView(R2.id.profile_gender_textView)
     TextView gender;
-
 
     Unbinder unbinder;
 
-    private LoginRepository loginRepository = new LoginRepository();
-
+    ProfileViewModel profileViewModel;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
-        unbinder = ButterKnife.bind(getActivity());
-        loginRepository.getUser(this::setViews);
+        unbinder = ButterKnife.bind(this, view);
+        profileViewModel = ViewModelProviders.of(this).get(ProfileViewModel.class);
+        profileViewModel.getUser(this::setViews);
         return view;
     }
 
@@ -63,7 +67,7 @@ public class ProfileFragment extends Fragment {
             email.setText(user.getEmail());
             gender.setText(user.getGender());
             birthDate.setText(user.getDate());
-//            Picasso.with(this).load(Uri.parse(null)).into(photo);
+            Picasso.with(getActivity()).load(user.getProfileImageURL()).into(photo);
         }
     }
 
@@ -74,11 +78,12 @@ public class ProfileFragment extends Fragment {
     }
 
     @OnClick(R.id.change_profile_image_btn)
-    void onChangeProfileImageBtnClick(){
+    public void onChangeProfileImageBtnClick() {
+        Log.i("click", "onChangeProfileImageBtnClick");
         Intent intent = new Intent(Intent.ACTION_PICK);
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
-        startActivityForResult(Intent.createChooser(intent, "Select Picture"), 0);
+        getActivity().startActivityForResult(Intent.createChooser(intent, "Select Picture"), 8898);
     }
 
     @Override
@@ -88,14 +93,26 @@ public class ProfileFragment extends Fragment {
     }
 
     @Override
-    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        if(requestCode == 0)
-        {
-            switch (requestCode){
-                case RESULT_OK :
-                    
-            }
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == 8898) {
+            if (resultCode == Activity.RESULT_OK) {
+                try {
+                    Bitmap bitmapImage = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), data.getData());
+                    photo.setImageBitmap(bitmapImage);
+                    handleUploadProfileImage(bitmapImage);
 
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+            }
         }
+    }
+
+
+    private void handleUploadProfileImage(Bitmap bitmap) {
+        profileViewModel.updateProfileImage(bitmap);
+
     }
 }
