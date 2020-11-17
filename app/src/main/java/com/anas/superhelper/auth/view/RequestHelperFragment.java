@@ -19,6 +19,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
+import com.anas.superhelper.MainActivity;
 import com.anas.superhelper.R;
 import com.anas.superhelper.auth.models.RequestHelper;
 import com.anas.superhelper.auth.viewmodels.RequestHelperViewModel;
@@ -63,7 +64,7 @@ public class RequestHelperFragment extends AppCompatActivity implements AdapterV
                 requestHelper.setWhatYouNeedHelpWith(whatYouNeedHelpWithText);
                 requestHelper.setWhoIsTheHelpFor(whoIsTheHelpForText);
                 requestHelperViewModel.insertHelperRequestData(requestHelper);
-
+                startActivity(new Intent(RequestHelperFragment.this, MainActivity.class));
             }
         });
         //Creating the ArrayAdapter instance having the country list
@@ -137,6 +138,20 @@ public class RequestHelperFragment extends AppCompatActivity implements AdapterV
 //        return view;
 //    }
 
+
+
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        outState.putString("whoIsTheHelpForText", whoIsTheHelpForText);
+        outState.putString("whatYouNeedHelpWithText", whatYouNeedHelpWithText);
+        outState.putString("relevantTags", (relevantTagsET.getText().toString()));
+        outState.putString("requestTitleET", (requestTitleET.getText().toString()));
+        outState.putString("requestDetailsET", (requestDetailsET.getText().toString()));
+
+    }
+
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         if (parent.getId() == R.id.how_is_the_help_for_spinner) {
@@ -146,9 +161,20 @@ public class RequestHelperFragment extends AppCompatActivity implements AdapterV
             whatYouNeedHelpWithText = whatYouNeedHelpWith[position];
         }
     }
+    @Override
+    public void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        // Restore UI state from the savedInstanceState.
+        // This bundle has also been passed to onCreate.
 
+    }
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
-
+        if (parent.getId() == R.id.how_is_the_help_for_spinner) {
+            whoIsTheHelpForText = whoIsTheHelpFor[0];
+        }
+        if (parent.getId() == R.id.what_you_need_help_with_sppiner) {
+            whatYouNeedHelpWithText = whatYouNeedHelpWith[0];
+        }
     }
 }

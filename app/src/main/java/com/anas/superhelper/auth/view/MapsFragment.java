@@ -102,7 +102,6 @@ public class MapsFragment extends AppCompatActivity implements OnMapReadyCallbac
         confirmLocationBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MapsFragment.this, MainActivity.class);
 //                intent.putExtra("latitude",currentLocation.getLatitude());
 //                intent.putExtra("longitude",currentLocation.getLongitude());
                 //public static final String MY_PREFS_NAME = "MyPrefsFile";
@@ -110,7 +109,7 @@ public class MapsFragment extends AppCompatActivity implements OnMapReadyCallbac
                 editor.putString("latitude", String.valueOf(currentLocation.getLatitude()));
                 editor.putString("longitude", String.valueOf(currentLocation.getLongitude()));
                 editor.apply();
-startActivity(intent);
+                finish();
             }
         });
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
