@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
-        loadFragment(new RequestHelperFragment());
+        loadFragment(new HomeFragment());
 
     }
 
@@ -59,16 +59,16 @@ public class MainActivity extends AppCompatActivity {
     private void loadFragment(Fragment fragment) {
         // load fragment
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        if(fragment instanceof RequestHelperFragment)
-        {
-            if(getIntent().hasExtra("latitude"))
-            {
-                Bundle bundle = new Bundle();
-                bundle.putString("latitude",getIntent().getStringExtra("latitude"));
-                bundle.putString("longitude",getIntent().getStringExtra("longitude"));
-                fragment.setArguments(bundle);
-            }
-        }
+//        if(fragment instanceof RequestHelperFragment)
+//        {
+//            if(getIntent().hasExtra("latitude"))
+//            {
+//                Bundle bundle = new Bundle();
+//                bundle.putString("latitude",getIntent().getStringExtra("latitude"));
+//                bundle.putString("longitude",getIntent().getStringExtra("longitude"));
+//                fragment.setArguments(bundle);
+//            }
+//        }
         transaction.replace(R.id.frame_container, fragment);
         transaction.addToBackStack(null);
         transaction.commit();

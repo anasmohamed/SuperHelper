@@ -44,8 +44,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ProfileFragment" />
-
+        <activity android:name=".auth.view.RequestHelperFragment"/>
         <activity
             android:name=".auth.view.LoginActivity"
             android:windowSoftInputMode="adjustResize">
@@ -56,7 +55,9 @@
             android:windowSoftInputMode="adjustResize" >
 
         </activity>
-        <activity android:name=".FirstActivity" />
+        <activity android:name=".FirstActivity" >
+
+        </activity>
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />

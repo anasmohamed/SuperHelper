@@ -1,5 +1,6 @@
 package com.anas.superhelper;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,12 +17,14 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.anas.superhelper.auth.models.RequestHelper;
+import com.anas.superhelper.auth.view.RequestHelperFragment;
 import com.anas.superhelper.auth.viewmodels.RequestHelperViewModel;
 
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import butterknife.Unbinder;
 
 public class HomeFragment extends Fragment {
@@ -45,7 +48,7 @@ public class HomeFragment extends Fragment {
 
         requestHelperRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-         requestHelperViewModel.getRequests(true,
+        requestHelperViewModel.getRequests(true,
                 listLiveData -> requestHelperRecyclerView.setAdapter(new RequestRecycleAdapter(getContext(),
                                 listLiveData.getValue(),
                                 (clickedRequest) -> Toast.makeText(getContext(), clickedRequest.getRequestTitle(), Toast.LENGTH_SHORT).show()
@@ -60,6 +63,11 @@ public class HomeFragment extends Fragment {
 //              requestHelperRecyclerView.setVisibility(View.GONE);
 //        }
         return view;
+    }
+
+    @OnClick({R.id.create_new_request_btn})
+    void onCreateNewRequestBtnClick() {
+        startActivity(new Intent(getActivity(), RequestHelperFragment.class));
     }
 
     @Override
