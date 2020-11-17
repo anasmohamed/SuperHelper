@@ -100,4 +100,9 @@ public class ProfileRepository {
             }
         });
     }
+    public void updateUserProfileData(String valueName,String value){
+        FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
+
+        mRef.child(firebaseUser.getUid()).child(valueName).setValue(value);
+    }
 }

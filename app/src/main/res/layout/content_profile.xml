@@ -40,6 +40,15 @@
                     android:layout_toRightOf="@id/nameImageView"
                     android:text="developer" />
 
+                <Button
+                    android:id="@+id/name_edit_btn"
+                    style="@style/Widget.MaterialComponents.Button.TextButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="2dp"
+                    android:text="edit" />
             </RelativeLayout>
 
             <View style="@style/proifleDetailsView" />
@@ -59,7 +68,15 @@
                     style="@style/profileDetailsMiniText"
                     android:layout_toRightOf="@id/mobileImageView"
                     android:text="+91-8129999999" />
+                <Button
+                    android:id="@+id/mobile_edit_btn"
+                    style="@style/Widget.MaterialComponents.Button.TextButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
 
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="2dp"
+                    android:text="edit" />
             </RelativeLayout>
 
             <View style="@style/proifleDetailsView" />
@@ -79,7 +96,15 @@
                     style="@style/profileDetailsMiniText"
                     android:layout_toRightOf="@id/emailImageView"
                     android:text="developer@appsnipp.com" />
+<!--                <Button-->
+<!--                    android:id="@+id/email_edit_btn"-->
+<!--                    style="@style/Widget.MaterialComponents.Button.TextButton"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
 
+<!--                    android:layout_alignParentEnd="true"-->
+<!--                    android:layout_marginEnd="2dp"-->
+<!--                    android:text="edit" />-->
             </RelativeLayout>
 
             <View style="@style/proifleDetailsView" />
@@ -99,7 +124,15 @@
                     style="@style/profileDetailsMiniText"
                     android:layout_toRightOf="@id/addressImageView"
                     android:text="Male" />
+                <Button
+                    android:id="@+id/gender_edit_btn"
+                    style="@style/Widget.MaterialComponents.Button.TextButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
 
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="2dp"
+                    android:text="edit" />
             </RelativeLayout>
 
             <View style="@style/proifleDetailsView" />
@@ -119,7 +152,15 @@
                     style="@style/profileDetailsMiniText"
                     android:layout_toRightOf="@id/dobImageView"
                     android:text="12-05-1990" />
+                <Button
+                    android:id="@+id/date_of_birth_edit_btn"
+                    style="@style/Widget.MaterialComponents.Button.TextButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
 
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="2dp"
+                    android:text="edit" />
             </RelativeLayout>
 
             <View style="@style/proifleDetailsView" />
