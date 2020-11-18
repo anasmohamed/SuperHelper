@@ -31,6 +31,10 @@ public class RequestHelperViewModel extends ViewModel {
     public void insertHelperRequestData(RequestHelper requestHelper) {
         requestHelperRepository.insertHelperRequestData(requestHelper);
     }
+    public void getUserType(Consumer<String> userType)
+    {
+        requestHelperRepository.getUserType(userType);
+    }
 //    public  getRequests() {
 //        if (requestHelperLiveDataList == null) {
 //            requestHelperRepository.getRequests(requestHelpers -> {

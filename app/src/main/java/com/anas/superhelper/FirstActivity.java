@@ -7,11 +7,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.anas.superhelper.auth.models.User;
 import com.anas.superhelper.auth.view.LoginActivity;
 import com.anas.superhelper.auth.view.SignUpActivity;
 
 public class FirstActivity extends AppCompatActivity implements View.OnClickListener {
    Button loginBtn,signUpAsHelperBtn,signUpForHelpBtn;
+   User user = new User();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,11 +33,16 @@ public class FirstActivity extends AppCompatActivity implements View.OnClickList
                 startActivity(new Intent(this, LoginActivity.class));
                 break;
             case R.id.sign_up_as_helper_btn:
-                startActivity(new Intent(this, SignUpActivity.class));
+                Intent helperIntent = new Intent(this,SignUpActivity.class);
+                helperIntent.putExtra("userType","helper");
+                startActivity(helperIntent);
 
                 break;
             case R.id.sign_up_to_find_help:
-                startActivity(new Intent(this, SignUpActivity.class));
+                Intent disabledIntent = new Intent(this,SignUpActivity.class);
+                disabledIntent.putExtra("userType","disabled");
+
+                startActivity(disabledIntent);
 
                 break;
         }

@@ -23,6 +23,7 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
+import com.anas.superhelper.MainActivity;
 import com.anas.superhelper.R;
 import com.anas.superhelper.auth.models.User;
 import com.anas.superhelper.auth.viewmodels.SignUpViewModel;
@@ -101,6 +102,7 @@ public class SignUpLastPageFragment extends Fragment {
                     user.setGender(radioButton.getText().toString());
                     signUpViewModel.signUp(user);
                     signUpViewModel.uploadIdImage(photo,user.getEmail());
+                    startActivity(new Intent(getActivity(), MainActivity.class));
                 }
             }
         });

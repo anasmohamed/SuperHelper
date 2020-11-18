@@ -43,7 +43,7 @@ public class SignUpFirstPageFragment extends Fragment {
 
 
                 }else{
-
+                user.setUserType(getArguments().getString("userType"));
                 user.setFirstName(firstNameET.getText().toString());
                 user.setLastName(lastNameEt.getText().toString());
                 bundle.putParcelable("user",user);

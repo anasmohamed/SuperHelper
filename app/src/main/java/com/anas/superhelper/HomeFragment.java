@@ -19,6 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.anas.superhelper.auth.models.RequestHelper;
 import com.anas.superhelper.auth.view.RequestHelperFragment;
 import com.anas.superhelper.auth.viewmodels.RequestHelperViewModel;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
 
@@ -36,6 +37,10 @@ public class HomeFragment extends Fragment {
     TextView createNewRequestTextView;
     @BindView(R.id.no_requests_found_text_view)
     TextView noRequestsFoundTextView;
+    String userType;
+
+    @BindView(R.id.create_new_request_btn)
+    FloatingActionButton createNewRequestBtn;
     private Unbinder unbinder;
     private LiveData<List<RequestHelper>> requestHelperLiveDataList;
 
@@ -45,7 +50,7 @@ public class HomeFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         unbinder = ButterKnife.bind(this, view);
         requestHelperViewModel = ViewModelProviders.of(this).get(RequestHelperViewModel.class);
-
+        requestHelperViewModel.getUserType(this::getUserType);
         requestHelperRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
         requestHelperViewModel.getRequests(true,
@@ -57,12 +62,15 @@ public class HomeFragment extends Fragment {
 
         );
 
-//        if (requestHelperLiveDataList.getValue().isEmpty()) {
-//              createNewRequestTextView.setVisibility(View.VISIBLE);
-//              noRequestsFoundTextView.setVisibility(View.VISIBLE);
-//              requestHelperRecyclerView.setVisibility(View.GONE);
-//        }
         return view;
+    }
+
+    void getUserType(String userType) {
+        this.userType = userType;
+        if(userType.equalsIgnoreCase("helper"))
+        {
+            createNewRequestBtn.setVisibility(View.GONE);
+        }
     }
 
     @OnClick({R.id.create_new_request_btn})

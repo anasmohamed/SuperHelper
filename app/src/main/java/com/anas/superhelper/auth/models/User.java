@@ -22,6 +22,7 @@ public class User implements Serializable, Parcelable {
     private String address;
     private String Interests;
     private String profileImageURL;
+    private String userType;
     public String getDisabledType() {
         return disabledType;
     }
@@ -194,5 +195,13 @@ public class User implements Serializable, Parcelable {
 
     public void setProfileImageURL(String profileImageURL) {
         this.profileImageURL = profileImageURL;
+    }
+
+    public String getUserType() {
+        return userType;
+    }
+
+    public void setUserType(String userType) {
+        this.userType = userType;
     }
 }

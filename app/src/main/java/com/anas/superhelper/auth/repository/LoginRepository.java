@@ -54,6 +54,7 @@ public class LoginRepository {
                 user.setPhone(dataSnapshot.child("phone").getValue(String.class));
                 user.setDate(dataSnapshot.child("date").getValue(String.class));
                 user.setEmail(dataSnapshot.child("email").getValue(String.class));
+                user.setUserType(dataSnapshot.child("userType").getValue(String.class));
                 returnValueResult.accept(user);
             }
 
