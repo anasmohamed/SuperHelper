@@ -94,6 +94,7 @@ public class RequestRecycleAdapter extends RecyclerView.Adapter<RequestRecycleAd
 
         @OnClick
         public void onClick(View v) {
+            getRequestHelper(getAdapterPosition()).setUid(getAdapterPosition());
             requestHelperClickListener.accept(getRequestHelper(getAdapterPosition()));
         }
     }

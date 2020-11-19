@@ -7,7 +7,7 @@
     android:layout_height="match_parent">
 
     <EditText
-        android:id="@+id/editTextTextMultiLine"
+        android:id="@+id/offer_details_et"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -43,7 +43,7 @@
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextMultiLine">
+        app:layout_constraintTop_toBottomOf="@+id/offer_details_et">
 
         <TextView
             android:id="@+id/textView13"
@@ -55,7 +55,7 @@
             tools:layout_editor_absoluteY="261dp" />
 
         <EditText
-            android:id="@+id/editTextNumber"
+            android:id="@+id/hour_price_et"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
             android:layout_marginStart="20dp"
@@ -71,7 +71,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="48dp"
         android:layout_marginEnd="10dp"
-        android:layout_marginStart="10"
+        android:layout_marginStart="10dp"
         android:orientation="horizontal"
         android:weightSum="2"
         app:layout_constraintEnd_toEndOf="parent"
@@ -79,7 +79,7 @@
 
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/cancel_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Cancel"
@@ -89,7 +89,7 @@
             tools:layout_editor_absoluteY="327dp" />
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/offer_help_btn"
             android:layout_weight="1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

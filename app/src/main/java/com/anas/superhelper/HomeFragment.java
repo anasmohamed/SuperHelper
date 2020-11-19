@@ -51,7 +51,7 @@ public class HomeFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         unbinder = ButterKnife.bind(this, view);
         requestHelperViewModel = ViewModelProviders.of(this).get(RequestHelperViewModel.class);
-        requestHelperViewModel.getUserType(this::getUserType);
+        requestHelperViewModel.getSpecificValue(this::getUserType,"userType");
         requestHelperRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
         requestHelperViewModel.getRequests(true,
@@ -67,6 +67,7 @@ public class HomeFragment extends Fragment {
                                     intent.putExtra("details",clickedRequest.getRequestDetails());
                                     intent.putExtra("helpWith",clickedRequest.getWhatYouNeedHelpWith());
                                     intent.putExtra("helpFor",clickedRequest.getWhoIsTheHelpFor());
+                                    intent.putExtra("uid",clickedRequest.getUid()) ;
 
                                     startActivity(intent);
                                 }

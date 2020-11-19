@@ -11,16 +11,26 @@ public class RequestHelper  {
     String whatYouNeedHelpWith;
     String latitude;
     String longitude;
+    int uid;
 
-    public String getUid() {
+    public String getRequestOwnerId() {
+        return requestOwnerId;
+    }
+
+    public void setRequestOwnerId(String requestOwnerId) {
+        this.requestOwnerId = requestOwnerId;
+    }
+
+    String requestOwnerId;
+
+    public int getUid() {
         return uid;
     }
 
-    public void setUid(String uid) {
+    public void setUid(int uid) {
         this.uid = uid;
     }
 
-    String uid;
 public RequestHelper(){
 
     }

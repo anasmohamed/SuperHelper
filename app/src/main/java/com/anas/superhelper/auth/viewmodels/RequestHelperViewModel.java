@@ -5,8 +5,7 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.anas.superhelper.auth.models.RequestHelper;
-import com.anas.superhelper.auth.models.User;
-import com.anas.superhelper.auth.repository.LoginRepository;
+import com.anas.superhelper.auth.models.Offer;
 import com.anas.superhelper.auth.repository.RequestHelperRepository;
 
 import java.util.List;
@@ -31,9 +30,13 @@ public class RequestHelperViewModel extends ViewModel {
     public void insertHelperRequestData(RequestHelper requestHelper) {
         requestHelperRepository.insertHelperRequestData(requestHelper);
     }
-    public void getUserType(Consumer<String> userType)
+    public void getSpecificValue(Consumer<String> returnedValue,String neededValue)
     {
-        requestHelperRepository.getUserType(userType);
+        requestHelperRepository.getSpecificValue(returnedValue,neededValue);
+    }
+    public void getSpecificValueFromRequest(Consumer<String> returnedValue,String neededValue,int index)
+    {
+        requestHelperRepository.getSpecificValueFromRequest(returnedValue,neededValue,index);
     }
 //    public  getRequests() {
 //        if (requestHelperLiveDataList == null) {
@@ -52,5 +55,8 @@ public class RequestHelperViewModel extends ViewModel {
             returnedLiveData.accept(requestHelperLiveDataList);
         }
     }
-
+public void insertOffer(Offer offer,int index)
+{
+    requestHelperRepository.insertOffer(offer,index);
+}
 }
