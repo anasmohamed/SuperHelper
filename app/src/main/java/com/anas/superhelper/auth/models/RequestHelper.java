@@ -1,6 +1,9 @@
 package com.anas.superhelper.auth.models;
 
-public class RequestHelper {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class RequestHelper  {
     String relevantTags;
     String requestTitle;
     String requestDetails;
@@ -8,9 +11,20 @@ public class RequestHelper {
     String whatYouNeedHelpWith;
     String latitude;
     String longitude;
+
+    public String getUid() {
+        return uid;
+    }
+
+    public void setUid(String uid) {
+        this.uid = uid;
+    }
+
+    String uid;
 public RequestHelper(){
 
     }
+
     public RequestHelper(String relevantTags, String requestTitle, String requestDetails, String whoIsTheHelpFor, String whatYouNeedHelpWith, String latitude, String longitude) {
         this.relevantTags = relevantTags;
         this.requestTitle = requestTitle;
@@ -76,4 +90,7 @@ public RequestHelper(){
     public void setLongitude(String longitude) {
         this.longitude = longitude;
     }
+
+
+
 }

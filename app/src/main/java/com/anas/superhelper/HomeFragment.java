@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.anas.superhelper.auth.models.RequestHelper;
+import com.anas.superhelper.auth.view.RequestDetailsActivity;
 import com.anas.superhelper.auth.view.RequestHelperFragment;
 import com.anas.superhelper.auth.viewmodels.RequestHelperViewModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -56,7 +57,19 @@ public class HomeFragment extends Fragment {
         requestHelperViewModel.getRequests(true,
                 listLiveData -> requestHelperRecyclerView.setAdapter(new RequestRecycleAdapter(getContext(),
                                 listLiveData.getValue(),
-                                (clickedRequest) -> Toast.makeText(getContext(), clickedRequest.getRequestTitle(), Toast.LENGTH_SHORT).show()
+                                (clickedRequest) -> {
+                                    Intent intent = new Intent(getActivity(),RequestDetailsActivity.class);
+                                    intent.putExtra("latitude",clickedRequest.getLatitude());
+                                    intent.putExtra("longitude",clickedRequest.getLongitude());
+
+                                    intent.putExtra("tags",clickedRequest.getRelevantTags().toString().isEmpty() ?  clickedRequest.getRelevantTags() : "");
+                                    intent.putExtra("title",clickedRequest.getRequestTitle());
+                                    intent.putExtra("details",clickedRequest.getRequestDetails());
+                                    intent.putExtra("helpWith",clickedRequest.getWhatYouNeedHelpWith());
+                                    intent.putExtra("helpFor",clickedRequest.getWhoIsTheHelpFor());
+
+                                    startActivity(intent);
+                                }
                         )
                 )
 
