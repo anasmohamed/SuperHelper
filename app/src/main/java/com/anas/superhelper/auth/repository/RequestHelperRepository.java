@@ -3,6 +3,7 @@ package com.anas.superhelper.auth.repository;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.LiveData;
 
 import com.anas.superhelper.auth.models.Offer;
 import com.anas.superhelper.auth.models.RequestHelper;
@@ -135,13 +136,7 @@ public class RequestHelperRepository {
                      @Override
                      public void onDataChange(@NonNull DataSnapshot snapshot) {
                          List<RequestHelper> list = new ArrayList<>();
-                         List<String> requestsKeysList = new ArrayList<>();
-                         snapshot.getChildren().forEach(dataSnapshot1 -> {
-                             Log.i("snashotkey",dataSnapshot1.getKey())  ;
 
-                             requestsKeysList.add(dataSnapshot1.getKey());
-
-                         });
                          snapshot.getChildren().forEach(dataSnapshot ->
                                  list.add(dataSnapshot.getValue(RequestHelper.class)));
                          listConsumer.accept(list);

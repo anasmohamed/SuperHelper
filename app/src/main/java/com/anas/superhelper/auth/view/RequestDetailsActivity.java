@@ -1,6 +1,7 @@
 package com.anas.superhelper.auth.view;
 
 import android.app.AlertDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -10,8 +11,12 @@ import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.anas.superhelper.OfferRecycleAdapter;
 import com.anas.superhelper.R;
+import com.anas.superhelper.RequestRecycleAdapter;
 import com.anas.superhelper.auth.models.Offer;
 import com.anas.superhelper.auth.viewmodels.RequestHelperViewModel;
 import com.google.firebase.auth.FirebaseAuth;
@@ -24,6 +29,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
@@ -36,6 +42,10 @@ public class RequestDetailsActivity extends AppCompatActivity {
     FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
     private RequestHelperViewModel requestHelperViewModel;
 
+
+    @BindView(R.id.request_helper_offers_recycleView)
+    RecyclerView offersRecycleView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,7 +55,21 @@ public class RequestDetailsActivity extends AppCompatActivity {
         requestHelperViewModel = ViewModelProviders.of(this).get(RequestHelperViewModel.class);
         itemIndex = getIntent().getExtras().getInt("uid");
         requestHelperViewModel.getKeysList(this::getKeyList);
-        Log.i("returnedRequest", itemIndex + "");
+
+        offersRecycleView.setLayoutManager(new LinearLayoutManager(RequestDetailsActivity.this));
+        requestHelperViewModel.getOffersList(
+                listLiveData -> offersRecycleView.setAdapter(new OfferRecycleAdapter(this,
+                                 listLiveData.getValue(),
+                                (clickedRequest) -> {
+
+                                }
+                        )
+                )
+
+        );
+
+
+
     }
 
     void getKeyList(List<String> keyList) {

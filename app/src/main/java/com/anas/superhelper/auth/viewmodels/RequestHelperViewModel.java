@@ -4,21 +4,18 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.anas.superhelper.auth.models.RequestHelper;
 import com.anas.superhelper.auth.models.Offer;
+import com.anas.superhelper.auth.models.RequestHelper;
 import com.anas.superhelper.auth.repository.RequestHelperRepository;
 
 import java.util.List;
 import java.util.function.Consumer;
 
 public class RequestHelperViewModel extends ViewModel {
-    private RequestHelperRepository requestHelperRepository;
     public LiveData<RequestHelper> requestHelperLiveData;
+    private RequestHelperRepository requestHelperRepository;
     private LiveData<List<RequestHelper>> requestHelperLiveDataList;
-
-    public LiveData<List<RequestHelper>> getRequestHelperLiveDataList() {
-        return requestHelperLiveDataList;
-    }
+    private LiveData<List<Offer>> offerLiveDataList;
 
     public RequestHelperViewModel() {
         super();
@@ -27,18 +24,23 @@ public class RequestHelperViewModel extends ViewModel {
         }
     }
 
+    public LiveData<List<RequestHelper>> getRequestHelperLiveDataList() {
+        return requestHelperLiveDataList;
+    }
+
     public void insertHelperRequestData(RequestHelper requestHelper) {
         requestHelperRepository.insertHelperRequestData(requestHelper);
     }
-    public void getSpecificValue(Consumer<String> returnedValue,String neededValue)
-    {
-        requestHelperRepository.getSpecificValue(returnedValue,neededValue);
+
+    public void getSpecificValue(Consumer<String> returnedValue, String neededValue) {
+        requestHelperRepository.getSpecificValue(returnedValue, neededValue);
     }
-    public void getSpecificValueFromRequest(Consumer<String> returnedValue,String neededValue,String index)
-    {
-        requestHelperRepository.getSpecificValueFromRequest(returnedValue,neededValue,index);
+
+    public void getSpecificValueFromRequest(Consumer<String> returnedValue, String neededValue, String index) {
+        requestHelperRepository.getSpecificValueFromRequest(returnedValue, neededValue, index);
     }
-//    public  getRequests() {
+
+    //    public  getRequests() {
 //        if (requestHelperLiveDataList == null) {
 //            requestHelperRepository.getRequests(requestHelpers -> {
 //                requestHelperLiveDataList = new MutableLiveData<>(requestHelpers);
@@ -55,13 +57,24 @@ public class RequestHelperViewModel extends ViewModel {
             returnedLiveData.accept(requestHelperLiveDataList);
         }
     }
-public void insertOffer(Offer offer,String key)
-{
-    requestHelperRepository.insertOffer(offer,key);
-}
-public void getKeysList(Consumer<List<String >> returnedKeysList){
+
+    public void insertOffer(Offer offer, String key) {
+        requestHelperRepository.insertOffer(offer, key);
+    }
+
+    public void getKeysList(Consumer<List<String>> returnedKeysList) {
         requestHelperRepository.getKeysList(returnedKeysList);
 
-}
+    }
+    public void getOffersList(Consumer<LiveData<List<Offer>>> returnedOffersLiveData)
+    {
+        requestHelperRepository.getOffers(offers -> {
+            offerLiveDataList = new MutableLiveData<>(offers);
+
+            returnedOffersLiveData.accept(offerLiveDataList);
+                }
+        );
+
+    }
 
 }

@@ -43,7 +43,6 @@ public class HomeFragment extends Fragment {
     @BindView(R.id.create_new_request_btn)
     FloatingActionButton createNewRequestBtn;
     private Unbinder unbinder;
-    private LiveData<List<RequestHelper>> requestHelperLiveDataList;
 
     @Nullable
     @Override
