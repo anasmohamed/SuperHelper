@@ -66,14 +66,14 @@ public class OfferRecycleAdapter extends RecyclerView.Adapter<OfferRecycleAdapte
     class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         @BindView(R.id.offer_title)
         TextView offerTitle;
-        @BindView(R.id.request_details_textView)
-        TextView requestDetails;
-        @BindView(R.id.who_is_the_help_for_textView)
-        TextView whoIsTheHelpFor;
-        @BindView(R.id.what_you_need_help_with_textView)
-        TextView whatYouNeedHelpWith;
-        @BindView(R.id.relevant_tags_textView)
-        TextView relevantTags;
+//        @BindView(R.id.request_details_textView)
+//        TextView requestDetails;
+//        @BindView(R.id.who_is_the_help_for_textView)
+//        TextView whoIsTheHelpFor;
+//        @BindView(R.id.what_you_need_help_with_textView)
+//        TextView whatYouNeedHelpWith;
+//        @BindView(R.id.relevant_tags_textView)
+//        TextView relevantTags;
 
         ViewHolder(View itemView) {
             super(itemView);

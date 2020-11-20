@@ -67,7 +67,7 @@ public class RequestHelperRepository {
         });
 
     }
-    public void getOffers(Consumer<List<Offer>> offersList)
+    public void getOffers(String key,Consumer<List<Offer>> offersList)
     {
         FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
 
@@ -77,7 +77,7 @@ public class RequestHelperRepository {
                 Log.i("dataUserType",dataSnapshot.child("userType").getValue().toString());
                 if(dataSnapshot.child("userType").getValue().toString().equalsIgnoreCase("helper"))
                 {
-                    mRequestsRef.child("Offers").addListenerForSingleValueEvent(new ValueEventListener() {
+                    mRequestsRef.child(key).child("Offers").addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
                             List<Offer> list = new ArrayList<>();

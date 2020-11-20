@@ -66,9 +66,9 @@ public class RequestHelperViewModel extends ViewModel {
         requestHelperRepository.getKeysList(returnedKeysList);
 
     }
-    public void getOffersList(Consumer<LiveData<List<Offer>>> returnedOffersLiveData)
+    public void getOffersList(String key,Consumer<LiveData<List<Offer>>> returnedOffersLiveData)
     {
-        requestHelperRepository.getOffers(offers -> {
+        requestHelperRepository.getOffers(key,offers -> {
             offerLiveDataList = new MutableLiveData<>(offers);
 
             returnedOffersLiveData.accept(offerLiveDataList);

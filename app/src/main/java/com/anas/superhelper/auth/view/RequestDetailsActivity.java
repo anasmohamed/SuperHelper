@@ -57,16 +57,6 @@ public class RequestDetailsActivity extends AppCompatActivity {
         requestHelperViewModel.getKeysList(this::getKeyList);
 
         offersRecycleView.setLayoutManager(new LinearLayoutManager(RequestDetailsActivity.this));
-        requestHelperViewModel.getOffersList(
-                listLiveData -> offersRecycleView.setAdapter(new OfferRecycleAdapter(this,
-                                 listLiveData.getValue(),
-                                (clickedRequest) -> {
-
-                                }
-                        )
-                )
-
-        );
 
 
 
@@ -75,6 +65,16 @@ public class RequestDetailsActivity extends AppCompatActivity {
     void getKeyList(List<String> keyList) {
         this.keyList = keyList;
         requestHelperViewModel.getSpecificValueFromRequest(this::getReceiverUID, "userId", keyList.get(itemIndex));
+        requestHelperViewModel.getOffersList(keyList.get(itemIndex),
+                listLiveData -> offersRecycleView.setAdapter(new OfferRecycleAdapter(this,
+                                listLiveData.getValue(),
+                                (clickedRequest) -> {
+
+                                }
+                        )
+                )
+
+        );
 
     }
 
