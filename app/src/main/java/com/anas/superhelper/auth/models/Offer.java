@@ -6,6 +6,24 @@ public class Offer {
     String offerDetails;
     String hourPrice;
 
+    public String getOfferTime() {
+        return offerTime;
+    }
+
+    public void setOfferTime(String offerTime) {
+        this.offerTime = offerTime;
+    }
+
+    public String getOfferDate() {
+        return offerDate;
+    }
+
+    public void setOfferDate(String offerDate) {
+        this.offerDate = offerDate;
+    }
+
+    String offerTime;
+String offerDate;
     public String getSender() {
         return sender;
     }

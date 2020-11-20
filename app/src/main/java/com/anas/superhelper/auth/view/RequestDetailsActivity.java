@@ -17,21 +17,41 @@ import com.anas.superhelper.auth.viewmodels.RequestHelperViewModel;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
+import java.util.Locale;
+
+import butterknife.ButterKnife;
 import butterknife.OnClick;
+import butterknife.Unbinder;
 
 public class RequestDetailsActivity extends AppCompatActivity {
-private RequestHelperViewModel requestHelperViewModel;
-String receiverUID;
+    String receiverUID;
     int itemIndex;
-FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+    List<String> keyList = new ArrayList<>();
+    Unbinder unbinder;
+    FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+    private RequestHelperViewModel requestHelperViewModel;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_request_details);
+        unbinder = ButterKnife.bind(this);
+
         requestHelperViewModel = ViewModelProviders.of(this).get(RequestHelperViewModel.class);
-         itemIndex = getIntent().getExtras().getInt("uid");
-        requestHelperViewModel.getSpecificValueFromRequest(this::getReceiverUID,"userId",itemIndex);
-        Log.i("returnedRequest", itemIndex+"");
+        itemIndex = getIntent().getExtras().getInt("uid");
+        requestHelperViewModel.getKeysList(this::getKeyList);
+        Log.i("returnedRequest", itemIndex + "");
+    }
+
+    void getKeyList(List<String> keyList) {
+        this.keyList = keyList;
+        requestHelperViewModel.getSpecificValueFromRequest(this::getReceiverUID, "userId", keyList.get(itemIndex));
+
     }
 
     @OnClick(R.id.add_offer_btn)
@@ -39,9 +59,10 @@ FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         showAddItemDialog();
     }
 
-    void getReceiverUID(String uid){
-this.receiverUID = uid;
+    void getReceiverUID(String uid) {
+        this.receiverUID = uid;
     }
+
     private void showAddItemDialog() {
         final AlertDialog dialogBuilder = new AlertDialog.Builder(this).create();
         LayoutInflater inflater = this.getLayoutInflater();
@@ -50,7 +71,7 @@ this.receiverUID = uid;
         final EditText hourPrice = (EditText) dialogView.findViewById(R.id.hour_price_et);
 
         Button offerHelpBtn = (Button) dialogView.findViewById(R.id.offer_help_btn);
-        Button cancelBtn = (Button) dialogView.findViewById(R.id.buttonCancel);
+        Button cancelBtn = (Button) dialogView.findViewById(R.id.cancel_btn);
 
 
         offerHelpBtn.setOnClickListener(new View.OnClickListener() {
@@ -60,8 +81,10 @@ this.receiverUID = uid;
                 offer.setOfferDetails(offerDetailsET.getText().toString());
                 offer.setHourPrice(hourPrice.getText().toString());
                 offer.setSender(firebaseUser.getUid());
+                offer.setOfferTime( new SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(new Date()));
+                offer.setOfferDate(new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date()));
                 offer.setReceiver(receiverUID);
-requestHelperViewModel.insertOffer(offer,itemIndex);
+                requestHelperViewModel.insertOffer(offer, keyList.get(itemIndex));
                 dialogBuilder.dismiss();
             }
         });
@@ -75,5 +98,11 @@ requestHelperViewModel.insertOffer(offer,itemIndex);
 
         dialogBuilder.setView(dialogView);
         dialogBuilder.show();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unbinder.unbind();
     }
 }

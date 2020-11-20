@@ -48,11 +48,11 @@ public class RequestHelperRepository {
         });
 
     }
-    public void getSpecificValueFromRequest(Consumer<String> returnedValue ,String neededString,int index)
+    public void getSpecificValueFromRequest(Consumer<String> returnedValue ,String neededString,String key)
     {
         FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
 
-        mRequestsRef.child(requestsKeysList.get(index)).addValueEventListener(new ValueEventListener() {
+        mRequestsRef.child(key).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 String returnedUserType = snapshot.child(neededString).getValue().toString();
@@ -66,13 +66,13 @@ public class RequestHelperRepository {
         });
 
     }
-    public void insertOffer(Offer offer,int index)
+    public void insertOffer(Offer offer,String key)
     {
         FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
-        mRequestsRef.child(requestsKeysList.get(index)).child("Offers").push().setValue(offer);
+        mRequestsRef.child(key).child("Offers").push().setValue(offer);
 
     }
-    public void getRequests(Consumer<List<RequestHelper>> listConsumer,Consumer <List<String>> keyList) {
+    public void getRequests(Consumer<List<RequestHelper>> listConsumer) {
         FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
         mRef.child(firebaseUser.getUid()).addValueEventListener(new ValueEventListener() {
             @Override
@@ -94,7 +94,6 @@ public class RequestHelperRepository {
                          snapshot.getChildren().forEach(dataSnapshot ->
                                  list.add(dataSnapshot.getValue(RequestHelper.class)));
                          listConsumer.accept(list);
-keyList.accept(requestsKeysList);
                      }
 
                      @Override
@@ -118,6 +117,56 @@ keyList.accept(requestsKeysList);
                      }
                  });
              }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Log.i("firebase myerror",databaseError.getMessage());
+            }
+        });
+
+
+
+    }
+    public void getKeysList(Consumer<List<String>> keysList) {
+        FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
+        mRef.child(firebaseUser.getUid()).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                Log.i("dataUserType",dataSnapshot.child("userType").getValue().toString());
+                if(dataSnapshot.child("userType").getValue().toString().equalsIgnoreCase("helper"))
+                {
+                    mRequestsRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            List<String> list = new ArrayList<>();
+
+                            snapshot.getChildren().forEach(dataSnapshot ->
+                                    list.add(dataSnapshot.getKey()));
+                            keysList.accept(list);
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
+
+                }else {
+                    mRef.child(firebaseUser.getUid()).child("requests").addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            List<String> list = new ArrayList<>();
+                            snapshot.getChildren().forEach(dataSnapshot -> list.add(dataSnapshot.getKey()));
+                            keysList.accept(list);
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
+                }
             }
 
             @Override

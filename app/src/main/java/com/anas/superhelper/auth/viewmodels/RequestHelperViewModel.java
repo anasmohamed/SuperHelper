@@ -34,7 +34,7 @@ public class RequestHelperViewModel extends ViewModel {
     {
         requestHelperRepository.getSpecificValue(returnedValue,neededValue);
     }
-    public void getSpecificValueFromRequest(Consumer<String> returnedValue,String neededValue,int index)
+    public void getSpecificValueFromRequest(Consumer<String> returnedValue,String neededValue,String index)
     {
         requestHelperRepository.getSpecificValueFromRequest(returnedValue,neededValue,index);
     }
@@ -55,8 +55,13 @@ public class RequestHelperViewModel extends ViewModel {
             returnedLiveData.accept(requestHelperLiveDataList);
         }
     }
-public void insertOffer(Offer offer,int index)
+public void insertOffer(Offer offer,String key)
 {
-    requestHelperRepository.insertOffer(offer,index);
+    requestHelperRepository.insertOffer(offer,key);
 }
+public void getKeysList(Consumer<List<String >> returnedKeysList){
+        requestHelperRepository.getKeysList(returnedKeysList);
+
+}
+
 }
