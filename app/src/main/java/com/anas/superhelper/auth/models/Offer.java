@@ -6,6 +6,15 @@ public class Offer {
     String offerDetails;
     String hourPrice;
 
+    public String getOfferStatus() {
+        return offerStatus;
+    }
+
+    public void setOfferStatus(String offerStatus) {
+        this.offerStatus = offerStatus;
+    }
+
+    String offerStatus;
     public String getOfferTime() {
         return offerTime;
     }
