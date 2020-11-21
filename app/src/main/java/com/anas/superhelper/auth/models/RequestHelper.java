@@ -1,9 +1,6 @@
 package com.anas.superhelper.auth.models;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-
-public class RequestHelper  {
+public class RequestHelper {
     String relevantTags;
     String requestTitle;
     String requestDetails;
@@ -12,26 +9,9 @@ public class RequestHelper  {
     String latitude;
     String longitude;
     int uid;
-
-    public String getRequestOwnerId() {
-        return requestOwnerId;
-    }
-
-    public void setRequestOwnerId(String requestOwnerId) {
-        this.requestOwnerId = requestOwnerId;
-    }
-
     String requestOwnerId;
 
-    public int getUid() {
-        return uid;
-    }
-
-    public void setUid(int uid) {
-        this.uid = uid;
-    }
-
-public RequestHelper(){
+    public RequestHelper() {
 
     }
 
@@ -43,6 +23,22 @@ public RequestHelper(){
         this.whatYouNeedHelpWith = whatYouNeedHelpWith;
         this.latitude = latitude;
         this.longitude = longitude;
+    }
+
+    public String getRequestOwnerId() {
+        return requestOwnerId;
+    }
+
+    public void setRequestOwnerId(String requestOwnerId) {
+        this.requestOwnerId = requestOwnerId;
+    }
+
+    public int getUid() {
+        return uid;
+    }
+
+    public void setUid(int uid) {
+        this.uid = uid;
     }
 
     public String getRelevantTags() {
@@ -100,7 +96,6 @@ public RequestHelper(){
     public void setLongitude(String longitude) {
         this.longitude = longitude;
     }
-
 
 
 }

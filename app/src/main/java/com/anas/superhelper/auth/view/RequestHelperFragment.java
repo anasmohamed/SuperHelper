@@ -34,7 +34,7 @@ public class RequestHelperFragment extends AppCompatActivity implements AdapterV
     String whoIsTheHelpForText, whatYouNeedHelpWithText;
     Button getLocationBtn, sendHelperRequest;
     RequestHelperViewModel requestHelperViewModel;
-
+    int check = 0;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,8 +45,7 @@ public class RequestHelperFragment extends AppCompatActivity implements AdapterV
         whoIsTheHelpForSpinner = (Spinner) findViewById(R.id.how_is_the_help_for_spinner);
         whatYouNeedHelpWithSpinner = (Spinner) findViewById(R.id.what_you_need_help_with_spinner);
         getLocationBtn = (Button) findViewById(R.id.getLocationBtn);
-        whoIsTheHelpForSpinner.setOnItemSelectedListener(this);
-        whatYouNeedHelpWithSpinner.setOnItemSelectedListener(this);
+
         requestHelperViewModel = ViewModelProviders.of(this).get(RequestHelperViewModel.class);
         sendHelperRequest = (Button) findViewById(R.id.send_request_helper_btn);
         sendHelperRequest.setOnClickListener(new View.OnClickListener() {
@@ -75,7 +74,8 @@ public class RequestHelperFragment extends AppCompatActivity implements AdapterV
         //Setting the ArrayAdapter data on the Spinner
         whatYouNeedHelpWithSpinner.setAdapter(arrayAdapterWhatYouNeedHelpWith);
         whoIsTheHelpForSpinner.setAdapter(arrayAdapterWhoIsTheHelpFor);
-
+        whoIsTheHelpForSpinner.setOnItemSelectedListener(this);
+        whatYouNeedHelpWithSpinner.setOnItemSelectedListener(this);
 
         getLocationBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -85,80 +85,29 @@ public class RequestHelperFragment extends AppCompatActivity implements AdapterV
             }
         });
     }
-//
-//    @Nullable
-//    @Override
-//    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-//        View view = inflater.inflate(R.layout.fragment_request_helper, container, false);
-//        relevantTagsET = (EditText) view.findViewById(R.id.relevant_tags_et);
-//        requestTitleET = (EditText) view.findViewById(R.id.request_title_et);
-//        requestDetailsET = (EditText) view.findViewById(R.id.request_details_et);
-//        whoIsTheHelpForSpinner = (Spinner) view.findViewById(R.id.how_is_the_help_for_spinner);
-//        whatYouNeedHelpWithSpinner = (Spinner) view.findViewById(R.id.what_you_need_help_with_sppiner);
-//        getLocationBtn = (Button) view.findViewById(R.id.getLocationBtn);
-//        whoIsTheHelpForSpinner.setOnItemSelectedListener(this);
-//        whatYouNeedHelpWithSpinner.setOnItemSelectedListener(this);
-//        requestHelperViewModel = ViewModelProviders.of(this).get(RequestHelperViewModel.class);
-//        sendHelperRequest = (Button) view.findViewById(R.id.send_request_helper_btn);
-//        sendHelperRequest.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                RequestHelper requestHelper = new RequestHelper();
-//                SharedPreferences prefs = getActivity().getSharedPreferences("location", MODE_PRIVATE);
-//                String name = prefs.getString("latitude", "");//"No name defined" is the default value.
-//                String idName = prefs.getString("longitude", ""); //0 is the default value.
-//                requestHelper.setLatitude(name);
-//                requestHelper.setLongitude(idName);
-//                requestHelper.setRelevantTags(relevantTagsET.getText().toString());
-//                requestHelper.setRequestTitle(requestTitleET.getText().toString());
-//                requestHelper.setRequestDetails(requestDetailsET.getText().toString());
-//                requestHelper.setWhatYouNeedHelpWith(whatYouNeedHelpWithText);
-//                requestHelper.setWhoIsTheHelpFor(whoIsTheHelpForText);
-//                requestHelperViewModel.insertHelperRequestData(requestHelper);
-//
-//            }
-//        });
-//        //Creating the ArrayAdapter instance having the country list
-//        ArrayAdapter arrayAdapterWhoIsTheHelpFor = new ArrayAdapter(getActivity(), android.R.layout.simple_spinner_item, whoIsTheHelpFor);
-//        arrayAdapterWhoIsTheHelpFor.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//        ArrayAdapter arrayAdapterWhatYouNeedHelpWith = new ArrayAdapter(getActivity(), android.R.layout.simple_spinner_item, whatYouNeedHelpWith);
-//        arrayAdapterWhatYouNeedHelpWith.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//        //Setting the ArrayAdapter data on the Spinner
-//        whatYouNeedHelpWithSpinner.setAdapter(arrayAdapterWhatYouNeedHelpWith);
-//        whoIsTheHelpForSpinner.setAdapter(arrayAdapterWhoIsTheHelpFor);
-//
-//
-//        getLocationBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//                startActivity(new Intent(getActivity(), MapsFragment.class));
-//            }
-//        });
-//        return view;
-//    }
-
 
 
     @Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
 
-        outState.putString("whoIsTheHelpForText", whoIsTheHelpForText);
-        outState.putString("whatYouNeedHelpWithText", whatYouNeedHelpWithText);
-        outState.putString("relevantTags", (relevantTagsET.getText().toString()));
-        outState.putString("requestTitleET", (requestTitleET.getText().toString()));
-        outState.putString("requestDetailsET", (requestDetailsET.getText().toString()));
 
     }
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        if (++check > 1) {
+
+
         if (parent.getId() == R.id.how_is_the_help_for_spinner) {
             whoIsTheHelpForText = whoIsTheHelpFor[position];
         }
         if (parent.getId() == R.id.what_you_need_help_with_sppiner) {
             whatYouNeedHelpWithText = whatYouNeedHelpWith[position];
+        }}else
+        {  whoIsTheHelpForText = whoIsTheHelpFor[0];
+            whatYouNeedHelpWithText = whatYouNeedHelpWith[0];
+
         }
     }
     @Override
@@ -170,11 +119,8 @@ public class RequestHelperFragment extends AppCompatActivity implements AdapterV
     }
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
-        if (parent.getId() == R.id.how_is_the_help_for_spinner) {
             whoIsTheHelpForText = whoIsTheHelpFor[0];
-        }
-        if (parent.getId() == R.id.what_you_need_help_with_sppiner) {
             whatYouNeedHelpWithText = whatYouNeedHelpWith[0];
-        }
+
     }
 }
