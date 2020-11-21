@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.anas.superhelper.auth.models.Offer;
 import com.anas.superhelper.auth.models.RequestHelper;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,6 +20,7 @@ import java.util.function.Consumer;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class OfferRecycleAdapter extends RecyclerView.Adapter<OfferRecycleAdapter.ViewHolder> {
     private List<Offer> offersList;
@@ -60,20 +62,20 @@ public class OfferRecycleAdapter extends RecyclerView.Adapter<OfferRecycleAdapte
     }
 
 
-    private Offer getRequestHelper(int position) {
+    private Offer getOffer(int position) {
         return offersList.get(position);
     }
     class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         @BindView(R.id.offer_details_tv)
-        TextView offerTitle;
-//        @BindView(R.id.request_details_textView)
-//        TextView requestDetails;
-//        @BindView(R.id.who_is_the_help_for_textView)
-//        TextView whoIsTheHelpFor;
-//        @BindView(R.id.what_you_need_help_with_textView)
-//        TextView whatYouNeedHelpWith;
-//        @BindView(R.id.relevant_tags_textView)
-//        TextView relevantTags;
+        TextView offerDetails;
+        @BindView(R.id.date_tv)
+        TextView offer_date;
+        @BindView(R.id.time_tv)
+        TextView offerTime;
+        @BindView(R.id.offer_sender_profile_image)
+        CircleImageView offerSenderProfileImage;
+        @BindView(R.id.offer_hour_price_tv)
+        TextView offerHourPrice;
 
         ViewHolder(View itemView) {
             super(itemView);
@@ -81,17 +83,17 @@ public class OfferRecycleAdapter extends RecyclerView.Adapter<OfferRecycleAdapte
         }
 
         void bind(int position) {
-            offerTitle.setText(getRequestHelper(position).getOfferDetails());
-//            requestDetails.setText(getRequestHelper(position).getRequestDetails());
-//            whoIsTheHelpFor.setText(getRequestHelper(position).getWhoIsTheHelpFor());
-//            whatYouNeedHelpWith.setText(getRequestHelper(position).getWhatYouNeedHelpWith());
-//            relevantTags.setText(getRequestHelper(position).getRelevantTags());
+            offerDetails.setText(getOffer(position).getOfferDetails());
+            offer_date.setText(getOffer(position).getOfferDate());
+            offerTime.setText(getOffer(position).getOfferTime());
+            Picasso.with(mContext).load(getOffer(position).getSenderProfileImageURl()).into(offerSenderProfileImage);
+            offerHourPrice.setText(getOffer(position).getHourPrice());
         }
 
 
         @OnClick
         public void onClick(View v) {
-            offerClickListener.accept(getRequestHelper(getAdapterPosition()));
+            offerClickListener.accept(getOffer(getAdapterPosition()));
         }
     }
 

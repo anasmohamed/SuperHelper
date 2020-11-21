@@ -123,6 +123,8 @@ public class RequestHelperRepository {
         FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
         mRequestsRef.child(key).child("Offers").push().setValue(offer);
         mRef.child(firebaseUser.getUid()).child("requests").child(key).child("Offers").push().setValue(offer);
+        mRef.child(offer.getReceiver()).child("requests").child(key).child("Offers").push().setValue(offer);
+
     }
     public void getRequests(Consumer<List<RequestHelper>> listConsumer) {
         FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
