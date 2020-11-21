@@ -6,6 +6,24 @@ public class Offer {
     String offerDetails;
     String hourPrice;
 
+    public String getSenderProfileImageURl() {
+        return senderProfileImageURl;
+    }
+
+    public void setSenderProfileImageURl(String senderProfileImageURl) {
+        this.senderProfileImageURl = senderProfileImageURl;
+    }
+
+    public String getSenderName() {
+        return senderName;
+    }
+
+    public void setSenderName(String senderName) {
+        this.senderName = senderName;
+    }
+
+    String senderProfileImageURl;
+String senderName;
     public String getOfferStatus() {
         return offerStatus;
     }

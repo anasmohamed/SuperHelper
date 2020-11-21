@@ -41,7 +41,7 @@ public class RequestDetailsActivity extends AppCompatActivity {
     Unbinder unbinder;
     FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
     private RequestHelperViewModel requestHelperViewModel;
-
+     String  profileImageURL,offerSenderName;
 
     @BindView(R.id.request_helper_offers_recycleView)
     RecyclerView offersRecycleView;
@@ -61,10 +61,28 @@ public class RequestDetailsActivity extends AppCompatActivity {
 
 
     }
+    void getProfileImageURL(String profileImageURL){
+        this.profileImageURL = profileImageURL;
+
+    }
+    void getFirstName(String lastName){
+        this.offerSenderName = lastName;
+
+    }
+    void getLastName(String lastName)
+    {
+        this.offerSenderName.concat(" "+ lastName);
+
+    }
+
 
     void getKeyList(List<String> keyList) {
         this.keyList = keyList;
         requestHelperViewModel.getSpecificValueFromRequest(this::getReceiverUID, "userId", keyList.get(itemIndex));
+        requestHelperViewModel.getSpecificValue(this::getProfileImageURL,"profileImage");
+        requestHelperViewModel.getSpecificValue(this::getFirstName,"firstName");
+        requestHelperViewModel.getSpecificValue(this::getLastName,"lastName");
+
         requestHelperViewModel.getOffersList(keyList.get(itemIndex),
                 listLiveData -> offersRecycleView.setAdapter(new OfferRecycleAdapter(this,
                                 listLiveData.getValue(),
@@ -108,6 +126,8 @@ public class RequestDetailsActivity extends AppCompatActivity {
                 offer.setOfferTime( new SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(new Date()));
                 offer.setOfferDate(new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date()));
                 offer.setReceiver(receiverUID);
+                offer.setSenderProfileImageURl(profileImageURL);
+                offer.setSenderName(offerSenderName);
                 requestHelperViewModel.insertOffer(offer, keyList.get(itemIndex));
                 dialogBuilder.dismiss();
             }

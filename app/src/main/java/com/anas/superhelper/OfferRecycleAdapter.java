@@ -64,7 +64,7 @@ public class OfferRecycleAdapter extends RecyclerView.Adapter<OfferRecycleAdapte
         return offersList.get(position);
     }
     class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        @BindView(R.id.offer_title)
+        @BindView(R.id.offer_details_tv)
         TextView offerTitle;
 //        @BindView(R.id.request_details_textView)
 //        TextView requestDetails;
