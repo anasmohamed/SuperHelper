@@ -30,8 +30,8 @@ public class SignUpDisabledPersonalInfoFragment extends Fragment implements
     Fragment signUpLastFragment;
     Bundle bundle;
     User user;
-    String[] values = {"coutinho", "suarez", "messi", "ronaldo", "silva", "aguero"};
-    String[] country = {"India", "USA", "China", "Japan", "Other"};
+    String[] values = {"reading", "sports", "movies", "programming"};
+    String[] country = {"vision Impairment.", "deaf", "physical disability"};
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -55,7 +55,10 @@ public class SignUpDisabledPersonalInfoFragment extends Fragment implements
         signUpLastFragment = new SignUpLastPageFragment();
         bundle = new Bundle();
         user = getArguments().getParcelable("user");
-
+if(user.getUserType().equalsIgnoreCase("helper"))
+{
+    disabledTypeSpinner.setVisibility(View.GONE);
+}
         nextBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -72,6 +75,7 @@ public class SignUpDisabledPersonalInfoFragment extends Fragment implements
                     fragmentTransaction.addToBackStack(null);
                     user.setJob(jobEditText.getText().toString());
                     user.setAddress(addressEditText.getText().toString());
+
                     user.setInterests(interestsEditText.getText().toString().isEmpty() ? "" : interestsEditText.getText().toString());
                     bundle.putParcelable("user", user);
                     signUpLastFragment.setArguments(bundle);

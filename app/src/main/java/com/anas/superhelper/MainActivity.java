@@ -40,18 +40,10 @@ public class MainActivity extends AppCompatActivity {
                     loadFragment(fragment);
 
                     return true;
-                case R.id.notification:
-                  //  toolbar.setTitle("My Gifts");
-                    return true;
                 case R.id.account:
                     fragment = new ProfileFragment();
                     loadFragment(fragment);
-//                case R.id.navigation_cart:
-//                    toolbar.setTitle("Cart");
-//                    return true;
-//                case R.id.navigation_profile:
-//                    toolbar.setTitle("Profile");
-//                    return true;
+
             }
             return false;
         }

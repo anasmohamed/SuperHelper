@@ -69,14 +69,14 @@ public class RequestRecycleAdapter extends RecyclerView.Adapter<RequestRecycleAd
     class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         @BindView(R.id.request_title_textView)
         TextView requestTitle;
-        @BindView(R.id.request_details_textView)
-        TextView requestDetails;
+//        @BindView(R.id.request_details_textView)
+//        TextView requestDetails;
         @BindView(R.id.who_is_the_help_for_textView)
         TextView whoIsTheHelpFor;
         @BindView(R.id.what_you_need_help_with_textView)
         TextView whatYouNeedHelpWith;
-        @BindView(R.id.relevant_tags_textView)
-        TextView relevantTags;
+//        @BindView(R.id.relevant_tags_textView)
+//        TextView relevantTags;
 
         ViewHolder(View itemView) {
             super(itemView);
@@ -85,10 +85,10 @@ public class RequestRecycleAdapter extends RecyclerView.Adapter<RequestRecycleAd
 
         void bind(int position) {
             requestTitle.setText(getRequestHelper(position).getRequestTitle());
-            requestDetails.setText(getRequestHelper(position).getRequestDetails());
+//            requestDetails.setText(getRequestHelper(position).getRequestDetails());
             whoIsTheHelpFor.setText(getRequestHelper(position).getWhoIsTheHelpFor());
             whatYouNeedHelpWith.setText(getRequestHelper(position).getWhatYouNeedHelpWith());
-            relevantTags.setText(getRequestHelper(position).getRelevantTags());
+//            relevantTags.setText(getRequestHelper(position).getRelevantTags());
         }
 
 
