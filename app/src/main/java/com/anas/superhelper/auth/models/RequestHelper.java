@@ -9,6 +9,16 @@ public class RequestHelper {
     String latitude;
     String longitude;
     int uid;
+
+    public String getSenderId() {
+        return senderId;
+    }
+
+    public void setSenderId(String senderId) {
+        this.senderId = senderId;
+    }
+
+    String senderId;
     String requestOwnerId;
 
     public RequestHelper() {

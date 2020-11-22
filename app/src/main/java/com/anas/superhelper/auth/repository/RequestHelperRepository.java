@@ -24,12 +24,18 @@ public class RequestHelperRepository {
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference mRef = database.getReference().child("Users");
     DatabaseReference mRequestsRef = database.getReference().child("Requests");
+
+
+
     public void insertHelperRequestData(RequestHelper requestHelper) {
         FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
+        String mGroupId = mRequestsRef.push().getKey();
 
-        mRef.child(firebaseUser.getUid()).child("requests").push().setValue(requestHelper);
-        requestHelper.setRequestOwnerId(firebaseUser.getUid());
-        mRequestsRef.push().setValue(requestHelper);
+        requestHelper.setSenderId(firebaseUser.getUid());
+        mRef.child(firebaseUser.getUid()).child("requests").child(mGroupId).setValue(requestHelper);
+        mRequestsRef.child(mGroupId).setValue(requestHelper);
+
+
     }
     public void getSpecificValue(Consumer<String> returnedValue ,String neededString)
     {
@@ -52,12 +58,12 @@ public class RequestHelperRepository {
     public void getSpecificValueFromRequest(Consumer<String> returnedValue ,String neededString,String key)
     {
         FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
-
         mRequestsRef.child(key).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.hasChildren()){
                 String returnedUserType = snapshot.child(neededString).getValue().toString();
-                returnedValue.accept(returnedUserType);
+                returnedValue.accept(returnedUserType);}
             }
 
             @Override
@@ -94,7 +100,7 @@ public class RequestHelperRepository {
                     });
 
                 }else {
-                    mRef.child(firebaseUser.getUid()).child("requests").child("Offers").addListenerForSingleValueEvent(new ValueEventListener() {
+                    mRef.child(firebaseUser.getUid()).child("requests").child(key).child("Offers").addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
                             List<Offer> list = new ArrayList<>();
@@ -123,6 +129,7 @@ public class RequestHelperRepository {
         FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
         mRequestsRef.child(key).child("Offers").push().setValue(offer);
         mRef.child(firebaseUser.getUid()).child("requests").child(key).child("Offers").push().setValue(offer);
+        Log.i("reciverid",offer.getReceiver());
         mRef.child(offer.getReceiver()).child("requests").child(key).child("Offers").push().setValue(offer);
 
     }
