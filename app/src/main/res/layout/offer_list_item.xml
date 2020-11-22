@@ -5,6 +5,8 @@
     android:layout_width="match_parent"
     android:layout_marginBottom="30dp"
     android:layout_marginTop="30dp"
+    android:layout_marginStart="10dp"
+    android:layout_marginEnd="10dp"
     android:background="@drawable/recycle_item"
     android:layout_height="wrap_content">
 
@@ -59,8 +61,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="14dp"
-            android:layout_marginEnd="16dp"
-            android:text="Hour Price :"
+            android:text="Hour Price : "
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/offer_sender_profile_image"
@@ -69,7 +70,6 @@
             android:id="@+id/offer_hour_price_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
             android:layout_marginTop="14dp"
             android:layout_marginEnd="16dp"
             android:text="TextView"
@@ -80,6 +80,36 @@
 
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/offer_status_linerLayout"
+        app:layout_constraintTop_toBottomOf="@+id/hour_price_linerLayout"
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/offer_status_title_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="14dp"
+            android:text="Offer Status : "
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/offer_sender_profile_image"
+            app:layout_constraintTop_toBottomOf="@+id/offer_details_tv" />
+        <TextView
+            android:id="@+id/offer_status_value_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:layout_marginEnd="16dp"
+            android:text="TextView"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/offer_sender_profile_image"
+            app:layout_constraintTop_toBottomOf="@+id/offer_details_tv" />
+
+    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/date_and_time_linear_layout"
@@ -90,7 +120,7 @@
         android:weightSum="2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/hour_price_linerLayout">
+        app:layout_constraintTop_toBottomOf="@id/offer_status_linerLayout">
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -111,7 +141,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="start"
-                android:layout_marginStart="10dp"
                 android:layout_marginBottom="20dp"
                 android:gravity="start"
                 android:text="TextView"

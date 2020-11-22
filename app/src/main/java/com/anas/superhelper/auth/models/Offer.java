@@ -33,15 +33,15 @@ public class Offer {
 
     String senderProfileImageURl;
 String senderName;
-    public String getOfferStatus() {
-        return offerStatus;
+    public String getStatus() {
+        return status;
     }
 
-    public void setOfferStatus(String offerStatus) {
-        this.offerStatus = offerStatus;
+    public void setStatus(String status) {
+        this.status = status;
     }
 
-    String offerStatus;
+    String status;
     public String getOfferTime() {
         return offerTime;
     }

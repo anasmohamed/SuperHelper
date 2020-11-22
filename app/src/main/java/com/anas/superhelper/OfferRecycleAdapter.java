@@ -6,13 +6,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.anas.superhelper.auth.models.Offer;
-import com.anas.superhelper.auth.models.RequestHelper;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -25,9 +23,9 @@ import butterknife.OnClick;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class OfferRecycleAdapter extends RecyclerView.Adapter<OfferRecycleAdapter.ViewHolder> {
-    private List<Offer> offersList;
-    private Consumer<Offer> offerClickListener;
-    private Context mContext;
+    private final List<Offer> offersList;
+    private final Consumer<Offer> offerClickListener;
+    private final Context mContext;
 
     public OfferRecycleAdapter(Context context, List<Offer> offersList, Consumer<Offer> offerClickListener) {
         this.offersList = new ArrayList<>();
@@ -67,6 +65,7 @@ public class OfferRecycleAdapter extends RecyclerView.Adapter<OfferRecycleAdapte
     private Offer getOffer(int position) {
         return offersList.get(position);
     }
+
     class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         @BindView(R.id.offer_details_tv)
         TextView offerDetails;
@@ -79,6 +78,10 @@ public class OfferRecycleAdapter extends RecyclerView.Adapter<OfferRecycleAdapte
         @BindView(R.id.offer_hour_price_tv)
         TextView offerHourPrice;
 
+        @BindView(R.id.offer_status_value_tv)
+        TextView offerStatus;
+        @BindView(R.id.accept_offer_btn)
+        Button acceptOfferBtn;
 
         ViewHolder(View itemView) {
             super(itemView);
@@ -91,13 +94,17 @@ public class OfferRecycleAdapter extends RecyclerView.Adapter<OfferRecycleAdapte
             offerTime.setText(getOffer(position).getOfferTime());
             Picasso.with(mContext).load(getOffer(position).getSenderProfileImageURl()).into(offerSenderProfileImage);
             offerHourPrice.setText(getOffer(position).getHourPrice());
-
+            offerStatus.setText(getOffer(position).getStatus());
+            if (getOffer(position).getStatus().equalsIgnoreCase("closed")||getOffer(position).getStatus().equalsIgnoreCase("accept")) {
+                acceptOfferBtn.setVisibility(View.GONE);
+            }
         }
-@OnClick({R.id.accept_offer_btn})
-        void onAcceptOfferBtnClick(){
+
+        @OnClick({R.id.accept_offer_btn})
+        void onAcceptOfferBtnClick() {
             getOffer(getAdapterPosition()).setOfferNumberInTheList(getAdapterPosition());
-    offerClickListener.accept(getOffer(getAdapterPosition()));
-}
+            offerClickListener.accept(getOffer(getAdapterPosition()));
+        }
 
         @OnClick
         public void onClick(View v) {

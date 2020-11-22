@@ -145,14 +145,13 @@ void getOffersKeyList(List<String> offersKeysList)
                                     builder.setMessage(R.string.dialog_message) .setTitle(R.string.dialog_title);
 
                                     //Setting message manually and performing action on button click
-                                    builder.setMessage("Do you want to close this application ?")
+                                    builder.setMessage("Do you want to accept this offer ?")
                                             .setCancelable(false)
                                             .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                                                 public void onClick(DialogInterface dialog, int id) {
                                                     finish();
                                                     requestHelperViewModel.updateOffersStatus(keyList.get(itemIndex),offersKeysList,offersKeysList.get(clickedRequest.getOfferNumberInTheList()));
-                                                    Toast.makeText(getApplicationContext(),"you choose yes action for alertbox",
-                                                            Toast.LENGTH_SHORT).show();
+                                                    
                                                 }
                                             })
                                             .setNegativeButton("No", new DialogInterface.OnClickListener() {
@@ -206,6 +205,7 @@ void getOffersKeyList(List<String> offersKeysList)
                 offer.setOfferTime(new SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(new Date()));
                 offer.setOfferDate(new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date()));
                 offer.setReceiver(receiverUID);
+                offer.setStatus("Pending");
                 offer.setSenderProfileImageURl(profileImageURL);
                 offer.setSenderName(offerSenderName);
                 requestHelperViewModel.insertOffer(offer, keyList.get(itemIndex));
