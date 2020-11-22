@@ -11,6 +11,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.anas.superhelper.auth.models.Offer;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -26,7 +28,7 @@ public class OfferRecycleAdapter extends RecyclerView.Adapter<OfferRecycleAdapte
     private final List<Offer> offersList;
     private final Consumer<Offer> offerClickListener;
     private final Context mContext;
-
+    private FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
     public OfferRecycleAdapter(Context context, List<Offer> offersList, Consumer<Offer> offerClickListener) {
         this.offersList = new ArrayList<>();
         this.offersList.addAll(offersList);
@@ -96,6 +98,10 @@ public class OfferRecycleAdapter extends RecyclerView.Adapter<OfferRecycleAdapte
             offerHourPrice.setText(getOffer(position).getHourPrice());
             offerStatus.setText(getOffer(position).getStatus());
             if (getOffer(position).getStatus().equalsIgnoreCase("closed")||getOffer(position).getStatus().equalsIgnoreCase("accept")) {
+                acceptOfferBtn.setVisibility(View.GONE);
+            }
+            if(getOffer(position).getSender().equalsIgnoreCase(firebaseUser.getUid()))
+            {
                 acceptOfferBtn.setVisibility(View.GONE);
             }
         }

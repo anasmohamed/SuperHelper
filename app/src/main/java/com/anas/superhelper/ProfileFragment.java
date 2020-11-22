@@ -75,7 +75,7 @@ public class ProfileFragment extends Fragment {
             email.setText(user.getEmail());
             gender.setText(user.getGender());
             birthDate.setText(user.getDate());
-            Picasso.with(getActivity()).load(user.getProfileImageURL()).into(photo);
+//            Picasso.with(getActivity()).load(user.getProfileImageURL()).into(photo);
         }
     }
 

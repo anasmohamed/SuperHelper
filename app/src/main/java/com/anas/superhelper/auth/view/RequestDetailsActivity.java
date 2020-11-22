@@ -70,7 +70,7 @@ public class RequestDetailsActivity extends AppCompatActivity implements OnMapRe
     String phoneNumber;
     String offerSenderPhoneNumber;
     private RequestHelperViewModel requestHelperViewModel;
-
+String status;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -125,8 +125,9 @@ public class RequestDetailsActivity extends AppCompatActivity implements OnMapRe
     }
 
     void getUserType(String userType) {
-        if (!userType.equalsIgnoreCase("helper")) {
+        if (!userType.equalsIgnoreCase("helper") && addOfferBtn != null) {
             addOfferBtn.setVisibility(View.GONE);
+
         }
 
     }
@@ -137,10 +138,10 @@ public class RequestDetailsActivity extends AppCompatActivity implements OnMapRe
 
             requestHelperViewModel.getSpecificValueFromOffers(keyList.get(itemIndex), offersKeysList.get(itemIndex), "senderPhoneNumber", this::getOfferSenderPhoneNumber);
             requestHelperViewModel.getSpecificValueFromOffers(keyList.get(itemIndex), offersKeysList.get(itemIndex), "sender", this::getOfferSenderId);
-            requestHelperViewModel.getSpecificValueFromOffers(keyList.get(itemIndex), offersKeysList.get(itemIndex), "status", this::getOfferStatus);
         }
     }
     void getOfferStatus(String status) {
+       this.status = status;
         if (status.equalsIgnoreCase("accept")) {
             builder.setMessage(R.string.dialog_message).setTitle(R.string.dialog_title);
             builder.setMessage("Your Offer Accepted" )
@@ -148,7 +149,7 @@ public class RequestDetailsActivity extends AppCompatActivity implements OnMapRe
                     .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
                             finish();
-                        dialog.cancel();
+                            dialog.cancel();
                         }
                     });
 
@@ -158,15 +159,17 @@ public class RequestDetailsActivity extends AppCompatActivity implements OnMapRe
             alert.setTitle("Offer Status");
             alert.show();
         }
-
     }
 
 
     void getOfferSenderId(String offerSenderId) {
         Log.i("offerId",offerSenderId);
-        if (offerSenderId.equalsIgnoreCase(firebaseUser.getUid())) {
+        if (offerSenderId.equalsIgnoreCase(firebaseUser.getUid()) && addOfferBtn != null) {
             addOfferBtn.setEnabled(false);
             addOfferBtn.setText("you already added offer");
+
+            requestHelperViewModel.getSpecificValueFromOffers(keyList.get(itemIndex), offersKeysList.get(itemIndex), "status", this::getOfferStatus);
+
         }
     }
 
@@ -258,7 +261,7 @@ public class RequestDetailsActivity extends AppCompatActivity implements OnMapRe
                 requestHelperViewModel.insertOffer(offer, keyList.get(itemIndex));
 
                 dialogBuilder.dismiss();
-                finish();
+//                finish();
             }
         });
         cancelBtn.setOnClickListener(new View.OnClickListener() {
