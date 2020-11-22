@@ -6,6 +6,15 @@ public class Offer {
     String offerDetails;
     String hourPrice;
 
+    public int getOfferNumberInTheList() {
+        return offerNumberInTheList;
+    }
+
+    public void setOfferNumberInTheList(int offerNumberInTheList) {
+        this.offerNumberInTheList = offerNumberInTheList;
+    }
+
+    int offerNumberInTheList;
     public String getSenderProfileImageURl() {
         return senderProfileImageURl;
     }

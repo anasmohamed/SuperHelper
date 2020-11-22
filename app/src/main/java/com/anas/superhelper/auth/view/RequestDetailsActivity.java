@@ -64,7 +64,7 @@ public class RequestDetailsActivity extends AppCompatActivity implements OnMapRe
     Unbinder unbinder;
     String longitude, latitude;
     AlertDialog.Builder builder;
-
+    List<String> offersKeysList;
     private RequestHelperViewModel requestHelperViewModel;
 
     @Override
@@ -124,6 +124,7 @@ public class RequestDetailsActivity extends AppCompatActivity implements OnMapRe
 
 void getOffersKeyList(List<String> offersKeysList)
 {
+   this.offersKeysList = offersKeysList;
     Log.i("offresKeyslist",offersKeysList.get(0));
 }
     void getKeyList(List<String> keyList) {
@@ -149,6 +150,7 @@ void getOffersKeyList(List<String> offersKeysList)
                                             .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                                                 public void onClick(DialogInterface dialog, int id) {
                                                     finish();
+                                                    requestHelperViewModel.updateOffersStatus(keyList.get(itemIndex),offersKeysList,offersKeysList.get(clickedRequest.getOfferNumberInTheList()));
                                                     Toast.makeText(getApplicationContext(),"you choose yes action for alertbox",
                                                             Toast.LENGTH_SHORT).show();
                                                 }

@@ -124,10 +124,19 @@ public class RequestHelperRepository {
 
 
     }
-    public void updateOfferStatus(String requestKey,List offersKeys)
-    {
-       for (int i = 0 ;i < offersKeys.size();i++){
-        mRequestsRef.child(requestKey).child("Offers").child(offersKeys.get(i).toString()).child("status").setValue("accept");
+    public void updateOfferStatus(String requestKey,List offersKeys,String thisOfferKey)
+    {        FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
+
+        for (int i = 0 ;i < offersKeys.size();i++){
+           if (offersKeys.get(i) == thisOfferKey) {
+               mRequestsRef.child(requestKey).child("Offers").child(offersKeys.get(i).toString()).child("status").setValue("accept");
+               mRef.child(firebaseUser.getUid()).child("requests").child(requestKey).child("Offers").child(offersKeys.get(i).toString()).child("status").setValue("accept");
+
+           }else {
+               mRequestsRef.child(requestKey).child("Offers").child(offersKeys.get(i).toString()).child("status").setValue("closed");
+               mRef.child(firebaseUser.getUid()).child("requests").child(requestKey).child("Offers").child(offersKeys.get(i).toString()).child("status").setValue("closed");
+
+           }
        }
 
     }

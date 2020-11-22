@@ -95,13 +95,13 @@ public class OfferRecycleAdapter extends RecyclerView.Adapter<OfferRecycleAdapte
         }
 @OnClick({R.id.accept_offer_btn})
         void onAcceptOfferBtnClick(){
-    Toast.makeText(mContext,"anas",Toast.LENGTH_LONG).show();
-
+            getOffer(getAdapterPosition()).setOfferNumberInTheList(getAdapterPosition());
+    offerClickListener.accept(getOffer(getAdapterPosition()));
 }
 
         @OnClick
         public void onClick(View v) {
-            offerClickListener.accept(getOffer(getAdapterPosition()));
+
         }
     }
 
