@@ -133,11 +133,12 @@ public class RequestDetailsActivity extends AppCompatActivity implements OnMapRe
 
     void getOffersKeyList(List<String> offersKeysList) {
         this.offersKeysList = offersKeysList;
-        Log.i("offresKeyslist", offersKeysList.get(0));
-        requestHelperViewModel.getSpecificValueFromOffers(keyList.get(itemIndex), offersKeysList.get(itemIndex), "senderPhoneNumber", this::getOfferSenderPhoneNumber);
-        requestHelperViewModel.getSpecificValueFromOffers(keyList.get(itemIndex), offersKeysList.get(itemIndex), "sender", this::getOfferSenderId);
-        requestHelperViewModel.getSpecificValueFromOffers(keyList.get(itemIndex), offersKeysList.get(itemIndex), "status", this::getOfferStatus);
+        if(!offersKeysList.isEmpty()) {
 
+            requestHelperViewModel.getSpecificValueFromOffers(keyList.get(itemIndex), offersKeysList.get(itemIndex), "senderPhoneNumber", this::getOfferSenderPhoneNumber);
+            requestHelperViewModel.getSpecificValueFromOffers(keyList.get(itemIndex), offersKeysList.get(itemIndex), "sender", this::getOfferSenderId);
+            requestHelperViewModel.getSpecificValueFromOffers(keyList.get(itemIndex), offersKeysList.get(itemIndex), "status", this::getOfferStatus);
+        }
     }
     void getOfferStatus(String status) {
         if (status.equalsIgnoreCase("accept")) {
@@ -180,7 +181,7 @@ public class RequestDetailsActivity extends AppCompatActivity implements OnMapRe
         Log.d("keylistsize", "keyslist " + keyList.size());
 
         requestHelperViewModel.getSpecificValueFromRequest(this::getReceiverUID, "senderId", keyList.get(itemIndex));
-        requestHelperViewModel.getSpecificValue(this::getProfileImageURL, "profileImage");
+        requestHelperViewModel.getSpecificValue(this::getProfileImageURL, "profileImageURL");
         requestHelperViewModel.getSpecificValue(this::getFirstName, "firstName");
         requestHelperViewModel.getSpecificValue(this::getLastName, "lastName");
         requestHelperViewModel.getSpecificValue(this::getUserType, "userType");

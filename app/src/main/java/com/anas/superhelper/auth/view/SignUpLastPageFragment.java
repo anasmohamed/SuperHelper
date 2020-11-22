@@ -101,12 +101,23 @@ public class SignUpLastPageFragment extends Fragment {
                     user.setDate(dateET.getText().toString());
                     user.setPhone(phoneNumberET.getText().toString());
                     user.setGender(radioButton.getText().toString());
-                    signUpViewModel.signUp(user);
-                    signUpViewModel.uploadIdImage(photo,user.getEmail());
-                    startActivity(new Intent(getActivity(), MainActivity.class));
+                    signUpViewModel.signUp(user,s -> {
+                        if(s.equalsIgnoreCase("true"))
+                        {
+                            signUpViewModel.uploadIdImage(photo,user.getEmail());
+                              startActivity(new Intent(getActivity(), MainActivity.class));
+
+                        }else{
+//                            Somthing went wrong please see your data
+                            Toast.makeText(getContext(),"" + s,Toast.LENGTH_LONG).show();
+                        }
+
+                    });
+
                 }
             }
         });
+
         takePhotoBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -115,7 +126,10 @@ public class SignUpLastPageFragment extends Fragment {
         });
         return view;
     }
+void isSignUpSuccessfull(String SignUpStatus)
+{
 
+}
     //+10 changed its sinature as Fragment; without it  onRequestPermissionsResult won't bbe called
     private void myCameraPermission() {
         if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {

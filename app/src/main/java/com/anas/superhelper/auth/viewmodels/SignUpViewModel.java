@@ -8,6 +8,8 @@ import androidx.lifecycle.ViewModel;
 import com.anas.superhelper.auth.models.User;
 import com.anas.superhelper.auth.repository.SignUpRepository;
 
+import java.util.function.Consumer;
+
 public class SignUpViewModel extends ViewModel {
     LiveData<User> authenticatedUserLiveData;
     LiveData<User> createdUserLiveData;
@@ -20,8 +22,8 @@ public class SignUpViewModel extends ViewModel {
         }
     }
 
-    public void signUp(User user) {
-        authenticatedUserLiveData = signUpRepository.firebaseSignInWithGoogle(user);
+    public void signUp(User user, Consumer<String>signedSuccfully) {
+        authenticatedUserLiveData = signUpRepository.firebaseSignInWithGoogle(user,signedSuccfully);
     }
     public void uploadIdImage(Bitmap photo,String userEmail) {
          signUpRepository.uploadImage(photo,userEmail);

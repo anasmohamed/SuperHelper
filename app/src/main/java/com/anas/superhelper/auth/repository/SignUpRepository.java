@@ -24,6 +24,7 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 import java.io.ByteArrayOutputStream;
+import java.util.function.Consumer;
 
 public class SignUpRepository {
     private FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
@@ -31,18 +32,21 @@ public class SignUpRepository {
     DatabaseReference mRef =  database.getReference().child("Users");
     StorageReference storageRef = FirebaseStorage.getInstance().getReference();
 
-    public MutableLiveData<User> firebaseSignInWithGoogle(User user) {
+    public MutableLiveData<User> firebaseSignInWithGoogle(User user, Consumer<String> signupUser) {
         MutableLiveData<User> authenticatedUserMutableLiveData = new MutableLiveData<>();
         firebaseAuth.createUserWithEmailAndPassword(user.getEmail(),user.getPassword()).addOnCompleteListener(authTask -> {
             if (authTask.isSuccessful()) {
                 FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
 
                 mRef.child(firebaseUser.getUid()).setValue(user);
+                signupUser.accept("true");
             } else {
                 authTask.addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         Log.i("repo firebase", "onFailure: "+e.getMessage());
+                        signupUser.accept("false "+ e.getMessage());
+
                     }
                 });
             }

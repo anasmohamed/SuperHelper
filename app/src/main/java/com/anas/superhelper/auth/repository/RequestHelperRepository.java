@@ -253,7 +253,6 @@ public class RequestHelperRepository {
         mRef.child(firebaseUser.getUid()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-             Log.i("dataUserType",dataSnapshot.child("userType").getValue().toString());
              if(dataSnapshot.child("userType").getValue().toString().equalsIgnoreCase("helper"))
              {
                  mRequestsRef.addListenerForSingleValueEvent(new ValueEventListener() {
