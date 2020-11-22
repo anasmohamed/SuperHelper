@@ -5,5 +5,7 @@
     <string name="first_name">first name</string>
     <string name="second_name">last name</string>
     <string name="mobile">mobile number</string>
+    <string name="dialog_message">Are you sure to accept this offer</string>
+    <string name="dialog_title">Offer Accepting</string>
 
 </resources>

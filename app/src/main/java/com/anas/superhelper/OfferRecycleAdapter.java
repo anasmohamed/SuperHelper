@@ -4,7 +4,9 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -77,6 +79,7 @@ public class OfferRecycleAdapter extends RecyclerView.Adapter<OfferRecycleAdapte
         @BindView(R.id.offer_hour_price_tv)
         TextView offerHourPrice;
 
+
         ViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
@@ -88,8 +91,13 @@ public class OfferRecycleAdapter extends RecyclerView.Adapter<OfferRecycleAdapte
             offerTime.setText(getOffer(position).getOfferTime());
             Picasso.with(mContext).load(getOffer(position).getSenderProfileImageURl()).into(offerSenderProfileImage);
             offerHourPrice.setText(getOffer(position).getHourPrice());
-        }
 
+        }
+@OnClick({R.id.accept_offer_btn})
+        void onAcceptOfferBtnClick(){
+    Toast.makeText(mContext,"anas",Toast.LENGTH_LONG).show();
+
+}
 
         @OnClick
         public void onClick(View v) {

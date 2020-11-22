@@ -1,6 +1,7 @@
 package com.anas.superhelper.auth.view;
 
 import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -8,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProviders;
@@ -61,6 +63,8 @@ public class RequestDetailsActivity extends AppCompatActivity implements OnMapRe
     GoogleMap map;
     Unbinder unbinder;
     String longitude, latitude;
+    AlertDialog.Builder builder;
+
     private RequestHelperViewModel requestHelperViewModel;
 
     @Override
@@ -68,6 +72,7 @@ public class RequestDetailsActivity extends AppCompatActivity implements OnMapRe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_request_details);
         unbinder = ButterKnife.bind(this);
+        builder = new AlertDialog.Builder(this);
 
         requestHelperViewModel = ViewModelProviders.of(this).get(RequestHelperViewModel.class);
         itemIndex = getIntent().getExtras().getInt("uid");
@@ -117,7 +122,10 @@ public class RequestDetailsActivity extends AppCompatActivity implements OnMapRe
         }
     }
 
-
+void getOffersKeyList(List<String> offersKeysList)
+{
+    Log.i("offresKeyslist",offersKeysList.get(0));
+}
     void getKeyList(List<String> keyList) {
         this.keyList = keyList;
         Log.d("keylistsize", "keyslist " + keyList.size());
@@ -127,11 +135,37 @@ public class RequestDetailsActivity extends AppCompatActivity implements OnMapRe
         requestHelperViewModel.getSpecificValue(this::getFirstName, "firstName");
         requestHelperViewModel.getSpecificValue(this::getLastName, "lastName");
         requestHelperViewModel.getSpecificValue(this::getUserType, "userType");
+        requestHelperViewModel.getOffersKeysList(keyList.get(itemIndex),this::getOffersKeyList);
         requestHelperViewModel.getOffersList(keyList.get(itemIndex),
                 listLiveData -> offersRecycleView.setAdapter(new OfferRecycleAdapter(this,
                                 listLiveData.getValue(),
                                 (clickedRequest) -> {
+//Uncomment the below code to Set the message and title from the strings.xml file
+                                    builder.setMessage(R.string.dialog_message) .setTitle(R.string.dialog_title);
 
+                                    //Setting message manually and performing action on button click
+                                    builder.setMessage("Do you want to close this application ?")
+                                            .setCancelable(false)
+                                            .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                                                public void onClick(DialogInterface dialog, int id) {
+                                                    finish();
+                                                    Toast.makeText(getApplicationContext(),"you choose yes action for alertbox",
+                                                            Toast.LENGTH_SHORT).show();
+                                                }
+                                            })
+                                            .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                                                public void onClick(DialogInterface dialog, int id) {
+                                                    //  Action for 'NO' Button
+                                                    dialog.cancel();
+                                                    Toast.makeText(getApplicationContext(),"you choose no action for alertbox",
+                                                            Toast.LENGTH_SHORT).show();
+                                                }
+                                            });
+                                    //Creating dialog box
+                                    AlertDialog alert = builder.create();
+                                    //Setting the title manually
+                                    alert.setTitle("AlertDialogExample");
+                                    alert.show();
                                 }
                         )
                 )

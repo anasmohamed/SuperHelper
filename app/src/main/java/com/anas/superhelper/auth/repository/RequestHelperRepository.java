@@ -124,13 +124,72 @@ public class RequestHelperRepository {
 
 
     }
+    public void updateOfferStatus(String requestKey,List offersKeys)
+    {
+       for (int i = 0 ;i < offersKeys.size();i++){
+        mRequestsRef.child(requestKey).child("Offers").child(offersKeys.get(i).toString()).child("status").setValue("accept");
+       }
+
+    }
+    public void getOffersKeys(String requestKey,Consumer<List<String>> returnedOffersKeys)
+    {
+        FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
+        mRef.child(firebaseUser.getUid()).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                Log.i("dataUserType",dataSnapshot.child("userType").getValue().toString());
+                if(dataSnapshot.child("userType").getValue().toString().equalsIgnoreCase("helper"))
+                {
+                    mRequestsRef.child(requestKey).child("Offers").addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            List<String> list = new ArrayList<>();
+
+                            snapshot.getChildren().forEach(dataSnapshot ->
+                                    list.add(dataSnapshot.getKey()));
+                            returnedOffersKeys.accept(list);
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
+
+                }else {
+                    mRef.child(firebaseUser.getUid()).child("requests").child(requestKey).child("Offers").addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            List<String> list = new ArrayList<>();
+                            snapshot.getChildren().forEach(dataSnapshot -> list.add(dataSnapshot.getKey()));
+                            returnedOffersKeys.accept(list);
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Log.i("firebase myerror",databaseError.getMessage());
+            }
+        });
+
+
+    }
     public void insertOffer(Offer offer,String key)
     {
         FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
-        mRequestsRef.child(key).child("Offers").push().setValue(offer);
-        mRef.child(firebaseUser.getUid()).child("requests").child(key).child("Offers").push().setValue(offer);
+        String mGroupId = mRequestsRef.push().getKey();
+
+        mRequestsRef.child(key).child("Offers").child(mGroupId).setValue(offer);
+        mRef.child(firebaseUser.getUid()).child("requests").child(key).child("Offers").child(mGroupId).setValue(offer);
         Log.i("reciverid",offer.getReceiver());
-        mRef.child(offer.getReceiver()).child("requests").child(key).child("Offers").push().setValue(offer);
+        mRef.child(offer.getReceiver()).child("requests").child(key).child("Offers").child(mGroupId).setValue(offer);
 
     }
     public void getRequests(Consumer<List<RequestHelper>> listConsumer) {
