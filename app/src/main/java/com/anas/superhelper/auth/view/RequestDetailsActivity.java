@@ -199,7 +199,6 @@ String status;
                                             .setCancelable(false)
                                             .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                                                 public void onClick(DialogInterface dialog, int id) {
-                                                    finish();
                                                     requestHelperViewModel.updateOffersStatus(keyList.get(itemIndex), offersKeysList, offersKeysList.get(clickedRequest.getOfferNumberInTheList()));
                                                     showAddItemDialog(offerSenderPhoneNumber);
                                                 }
@@ -297,15 +296,17 @@ String status;
             public void onClick(View view) {
 
                 dialogBuilder.dismiss();
+                                                                    finish();
+
             }
         });
-        cancelBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // DO SOMETHINGS
-                dialogBuilder.dismiss();
-            }
-        });
+//        cancelBtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                // DO SOMETHINGS
+//                dialogBuilder.dismiss();
+//            }
+//        });
 
         dialogBuilder.setView(dialogView);
         dialogBuilder.show();

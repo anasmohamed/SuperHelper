@@ -95,7 +95,7 @@ public class OfferRecycleAdapter extends RecyclerView.Adapter<OfferRecycleAdapte
             offer_date.setText(getOffer(position).getOfferDate());
             offerTime.setText(getOffer(position).getOfferTime());
             Picasso.with(mContext).load(getOffer(position).getSenderProfileImageURl()).into(offerSenderProfileImage);
-            offerHourPrice.setText(getOffer(position).getHourPrice());
+            offerHourPrice.setText(getOffer(position).getHourPrice() + " EGP");
             offerStatus.setText(getOffer(position).getStatus());
             if (getOffer(position).getStatus().equalsIgnoreCase("closed")||getOffer(position).getStatus().equalsIgnoreCase("accept")) {
                 acceptOfferBtn.setVisibility(View.GONE);
