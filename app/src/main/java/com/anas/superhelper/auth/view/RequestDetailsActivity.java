@@ -65,6 +65,8 @@ public class RequestDetailsActivity extends AppCompatActivity implements OnMapRe
     String longitude, latitude;
     AlertDialog.Builder builder;
     List<String> offersKeysList;
+    String phoneNumber;
+    String offerSenderPhoneNumber;
     private RequestHelperViewModel requestHelperViewModel;
 
     @Override
@@ -111,6 +113,10 @@ public class RequestDetailsActivity extends AppCompatActivity implements OnMapRe
 
     }
 
+    void getPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
     void getLastName(String lastName) {
         this.offerSenderName.concat(" " + lastName);
 
@@ -122,10 +128,17 @@ public class RequestDetailsActivity extends AppCompatActivity implements OnMapRe
         }
     }
 
-void getOffersKeyList(List<String> offersKeysList)
+    void getOffersKeyList(List<String> offersKeysList) {
+        this.offersKeysList = offersKeysList;
+        Log.i("offresKeyslist", offersKeysList.get(0));
+        requestHelperViewModel.getSpecificValueFromOffers(keyList.get(itemIndex),offersKeysList.get(itemIndex),"senderPhoneNumber",this::getOfferSenderPhoneNumber);
+
+    }
+void getOfferSenderPhoneNumber(String phoneNumber)
 {
-   this.offersKeysList = offersKeysList;
-    Log.i("offresKeyslist",offersKeysList.get(0));
+    offerSenderPhoneNumber = phoneNumber;
+    Log.i("offerSenderPhone", offerSenderPhoneNumber);
+
 }
     void getKeyList(List<String> keyList) {
         this.keyList = keyList;
@@ -136,36 +149,34 @@ void getOffersKeyList(List<String> offersKeysList)
         requestHelperViewModel.getSpecificValue(this::getFirstName, "firstName");
         requestHelperViewModel.getSpecificValue(this::getLastName, "lastName");
         requestHelperViewModel.getSpecificValue(this::getUserType, "userType");
-        requestHelperViewModel.getOffersKeysList(keyList.get(itemIndex),this::getOffersKeyList);
+        requestHelperViewModel.getOffersKeysList(keyList.get(itemIndex), this::getOffersKeyList);
+        requestHelperViewModel.getSpecificValue(this::getPhoneNumber, "phone");
         requestHelperViewModel.getOffersList(keyList.get(itemIndex),
                 listLiveData -> offersRecycleView.setAdapter(new OfferRecycleAdapter(this,
                                 listLiveData.getValue(),
                                 (clickedRequest) -> {
-//Uncomment the below code to Set the message and title from the strings.xml file
-                                    builder.setMessage(R.string.dialog_message) .setTitle(R.string.dialog_title);
-
-                                    //Setting message manually and performing action on button click
+                                    builder.setMessage(R.string.dialog_message).setTitle(R.string.dialog_title);
                                     builder.setMessage("Do you want to accept this offer ?")
                                             .setCancelable(false)
                                             .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                                                 public void onClick(DialogInterface dialog, int id) {
                                                     finish();
-                                                    requestHelperViewModel.updateOffersStatus(keyList.get(itemIndex),offersKeysList,offersKeysList.get(clickedRequest.getOfferNumberInTheList()));
-                                                    
+                                                    requestHelperViewModel.updateOffersStatus(keyList.get(itemIndex), offersKeysList, offersKeysList.get(clickedRequest.getOfferNumberInTheList()));
+
                                                 }
                                             })
                                             .setNegativeButton("No", new DialogInterface.OnClickListener() {
                                                 public void onClick(DialogInterface dialog, int id) {
                                                     //  Action for 'NO' Button
                                                     dialog.cancel();
-                                                    Toast.makeText(getApplicationContext(),"you choose no action for alertbox",
+                                                    Toast.makeText(getApplicationContext(), "you choose no action for alertbox",
                                                             Toast.LENGTH_SHORT).show();
                                                 }
                                             });
                                     //Creating dialog box
                                     AlertDialog alert = builder.create();
                                     //Setting the title manually
-                                    alert.setTitle("AlertDialogExample");
+                                    alert.setTitle("Accepting Offer");
                                     alert.show();
                                 }
                         )
@@ -208,6 +219,7 @@ void getOffersKeyList(List<String> offersKeysList)
                 offer.setStatus("Pending");
                 offer.setSenderProfileImageURl(profileImageURL);
                 offer.setSenderName(offerSenderName);
+                offer.setSenderPhoneNumber(phoneNumber);
                 requestHelperViewModel.insertOffer(offer, keyList.get(itemIndex));
 
                 dialogBuilder.dismiss();

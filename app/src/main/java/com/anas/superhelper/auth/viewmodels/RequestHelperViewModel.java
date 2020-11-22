@@ -74,6 +74,9 @@ public class RequestHelperViewModel extends ViewModel {
     {
         requestHelperRepository.updateOfferStatus(requestKey,offersKeyList,thisOfferKey);
     }
+    public void getSpecificValueFromOffers(String requestKey,String offerKey,String neededValue,Consumer<String>retrunedValue){
+        requestHelperRepository.getSpecificValueFromOffers(requestKey,offerKey,neededValue,retrunedValue);
+    }
     public void getOffersList(String key,Consumer<LiveData<List<Offer>>> returnedOffersLiveData)
     {
         requestHelperRepository.getOffers(key,offers -> {

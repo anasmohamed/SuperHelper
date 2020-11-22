@@ -73,6 +73,22 @@ public class RequestHelperRepository {
         });
 
     }
+    public void getSpecificValueFromOffers(String requestKey,String offerKey,String neededValue,Consumer<String> returnedValue){
+        FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
+        mRef.child(firebaseUser.getUid()).child("requests").child(requestKey).child("Offers").child(offerKey).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.hasChildren()){
+                    String returnedUserType = snapshot.child(neededValue).getValue().toString();
+                    returnedValue.accept(returnedUserType);}
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
     public void getOffers(String key,Consumer<List<Offer>> offersList)
     {
         FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
