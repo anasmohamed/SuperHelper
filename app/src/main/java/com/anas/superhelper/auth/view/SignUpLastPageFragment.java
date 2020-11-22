@@ -84,6 +84,7 @@ public class SignUpLastPageFragment extends Fragment {
             }
         });
         user = getArguments().getParcelable("user");
+        user.setProfileImageURL("https://firebasestorage.googleapis.com/v0/b/superhelper-568ba.appspot.com/o/profileImages%2Funnamed.png?alt=media&token=ed3cbfc9-2d0a-4c15-9b41-6c9dda375da1");
         signUpViewModel = ViewModelProviders.of(this).get(SignUpViewModel.class);
         Log.i("user object", "onCreateView: " + user.getFirstName());
         signUpBtn.setOnClickListener(new View.OnClickListener() {

@@ -81,7 +81,9 @@ public class RequestRecycleAdapter extends RecyclerView.Adapter<RequestRecycleAd
         ViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
+
         }
+
 
         void bind(int position) {
             requestTitle.setText(getRequestHelper(position).getRequestTitle());
