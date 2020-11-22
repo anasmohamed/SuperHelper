@@ -60,6 +60,8 @@ public class RequestDetailsActivity extends AppCompatActivity implements OnMapRe
     RecyclerView offersRecycleView;
     @BindView(R.id.add_offer_btn)
     Button addOfferBtn;
+
+
     GoogleMap map;
     Unbinder unbinder;
     String longitude, latitude;
@@ -126,20 +128,53 @@ public class RequestDetailsActivity extends AppCompatActivity implements OnMapRe
         if (!userType.equalsIgnoreCase("helper")) {
             addOfferBtn.setVisibility(View.GONE);
         }
+
     }
 
     void getOffersKeyList(List<String> offersKeysList) {
         this.offersKeysList = offersKeysList;
         Log.i("offresKeyslist", offersKeysList.get(0));
-        requestHelperViewModel.getSpecificValueFromOffers(keyList.get(itemIndex),offersKeysList.get(itemIndex),"senderPhoneNumber",this::getOfferSenderPhoneNumber);
+        requestHelperViewModel.getSpecificValueFromOffers(keyList.get(itemIndex), offersKeysList.get(itemIndex), "senderPhoneNumber", this::getOfferSenderPhoneNumber);
+        requestHelperViewModel.getSpecificValueFromOffers(keyList.get(itemIndex), offersKeysList.get(itemIndex), "sender", this::getOfferSenderId);
+        requestHelperViewModel.getSpecificValueFromOffers(keyList.get(itemIndex), offersKeysList.get(itemIndex), "status", this::getOfferStatus);
 
     }
-void getOfferSenderPhoneNumber(String phoneNumber)
-{
-    offerSenderPhoneNumber = phoneNumber;
-    Log.i("offerSenderPhone", offerSenderPhoneNumber);
+    void getOfferStatus(String status) {
+        if (status.equalsIgnoreCase("accept")) {
+            builder.setMessage(R.string.dialog_message).setTitle(R.string.dialog_title);
+            builder.setMessage("Your Offer Accepted" )
+                    .setCancelable(false)
+                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            finish();
+                        dialog.cancel();
+                        }
+                    });
 
-}
+            //Creating dialog box
+            AlertDialog alert = builder.create();
+            //Setting the title manually
+            alert.setTitle("Offer Status");
+            alert.show();
+        }
+
+    }
+
+
+    void getOfferSenderId(String offerSenderId) {
+        Log.i("offerId",offerSenderId);
+        if (offerSenderId.equalsIgnoreCase(firebaseUser.getUid())) {
+            addOfferBtn.setEnabled(false);
+            addOfferBtn.setText("you already added offer");
+        }
+    }
+
+    void getOfferSenderPhoneNumber(String phoneNumber) {
+        offerSenderPhoneNumber = phoneNumber;
+        Log.i("offerSenderPhone", offerSenderPhoneNumber);
+
+    }
+
     void getKeyList(List<String> keyList) {
         this.keyList = keyList;
         Log.d("keylistsize", "keyslist " + keyList.size());
@@ -162,15 +197,14 @@ void getOfferSenderPhoneNumber(String phoneNumber)
                                                 public void onClick(DialogInterface dialog, int id) {
                                                     finish();
                                                     requestHelperViewModel.updateOffersStatus(keyList.get(itemIndex), offersKeysList, offersKeysList.get(clickedRequest.getOfferNumberInTheList()));
-
+                                                    showAddItemDialog(offerSenderPhoneNumber);
                                                 }
                                             })
                                             .setNegativeButton("No", new DialogInterface.OnClickListener() {
                                                 public void onClick(DialogInterface dialog, int id) {
                                                     //  Action for 'NO' Button
                                                     dialog.cancel();
-                                                    Toast.makeText(getApplicationContext(), "you choose no action for alertbox",
-                                                            Toast.LENGTH_SHORT).show();
+
                                                 }
                                             });
                                     //Creating dialog box
@@ -242,5 +276,34 @@ void getOfferSenderPhoneNumber(String phoneNumber)
     protected void onDestroy() {
         super.onDestroy();
         unbinder.unbind();
+    }
+
+    private void showAddItemDialog(String title) {
+        final AlertDialog dialogBuilder = new AlertDialog.Builder(this).create();
+        LayoutInflater inflater = this.getLayoutInflater();
+        View dialogView = inflater.inflate(R.layout.accept_offer_success_dialog, null);
+        TextView phoneNumberTextView = dialogView.findViewById(R.id.call_this_number_value_tv);
+        phoneNumberTextView.setText(title);
+        Button updateBtn = dialogView.findViewById(R.id.call_btn);
+        Button cancelBtn = dialogView.findViewById(R.id.cancel_btn);
+
+
+        updateBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                dialogBuilder.dismiss();
+            }
+        });
+        cancelBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // DO SOMETHINGS
+                dialogBuilder.dismiss();
+            }
+        });
+
+        dialogBuilder.setView(dialogView);
+        dialogBuilder.show();
     }
 }
