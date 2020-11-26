@@ -135,12 +135,8 @@ void isSignUpSuccessfull(String SignUpStatus)
         if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
             takePicture();
         } else {
-            //changed here
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                requestPermissions(new String[]{Manifest.permission.CAMERA}, REQUEST_CAMERA_PERMISSION);
-                takePicture();
+            requestPermissions(new String[]{Manifest.permission.CAMERA}, REQUEST_CAMERA_PERMISSION);
 
-            }
         }
     }
 
@@ -154,7 +150,11 @@ void isSignUpSuccessfull(String SignUpStatus)
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+if(requestCode == REQUEST_CAMERA_PERMISSION && requestCode == RESULT_OK)
+{
+    takePicture();
 
+}
         if (requestCode == TAKE_PHOTO_CODE && resultCode == RESULT_OK ) {
             Log.d("CameraDemo", data.getExtras().get("data").toString());
             isIdImageTaken = true;
