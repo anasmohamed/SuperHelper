@@ -5,8 +5,8 @@
     <string name="first_name">first name</string>
     <string name="second_name">last name</string>
     <string name="mobile">mobile number</string>
-    <string name="dialog_message">Are you sure to accept this offer</string>
-    <string name="dialog_title">Offer Accepting</string>
+    <string name="dialog_message">هل تريد قبول العرض</string>
+    <string name="dialog_title">قبول العرض</string>
     <string name="signup_as_helper">تسجيل لتقديم المساعدة</string>
 
 </resources>
