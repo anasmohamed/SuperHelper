@@ -19,7 +19,7 @@
 
             <TextView
                 style="@style/headerText"
-                android:text="Account Info"
+                android:text="معلومات الحساب"
                 android:layout_marginBottom="20dp"/>
 
             <RelativeLayout style="@style/profileDetailsLayout">
@@ -30,7 +30,7 @@
 
                 <TextView
                     android:id="@+id/nameTextView"
-                    android:text="Name"
+                    android:text="الاسم"
                     android:layout_toRightOf="@id/nameImageView"
                 style="@style/profileDetailsTextMain" />
 
@@ -48,7 +48,7 @@
 
                     android:layout_alignParentEnd="true"
                     android:layout_marginEnd="2dp"
-                    android:text="edit" />
+                    android:text="تعديل" />
             </RelativeLayout>
 
             <View style="@style/proifleDetailsView" />
@@ -59,7 +59,7 @@
                     style="@style/profileDetailsImage" />
 
                 <TextView
-                    android:text="Mobile"
+                    android:text="رقم الموبايل"
                     android:layout_toRightOf="@id/mobileImageView"
                     style="@style/profileDetailsTextMain"/>
 
@@ -76,7 +76,7 @@
 
                     android:layout_alignParentEnd="true"
                     android:layout_marginEnd="2dp"
-                    android:text="edit" />
+                    android:text="تعديل" />
             </RelativeLayout>
 
             <View style="@style/proifleDetailsView" />
@@ -87,7 +87,7 @@
                     style="@style/profileDetailsImage" />
 
                 <TextView
-                    android:text="Email"
+                    android:text="البريد الالكترونى"
                     android:layout_toRightOf="@id/emailImageView"
                     style="@style/profileDetailsTextMain" />
 
@@ -117,7 +117,7 @@
                 <TextView
                     style="@style/profileDetailsTextMain"
                     android:layout_toRightOf="@id/addressImageView"
-                    android:text="Gender" />
+                    android:text="الجنس" />
 
                 <TextView
                     android:id="@+id/profile_gender_textView"
@@ -132,7 +132,7 @@
 
                     android:layout_alignParentEnd="true"
                     android:layout_marginEnd="2dp"
-                    android:text="edit" />
+                    android:text="تعديل" />
             </RelativeLayout>
 
             <View style="@style/proifleDetailsView" />
@@ -143,7 +143,7 @@
                     style="@style/profileDetailsImage" />
 
                 <TextView
-                    android:text="D.O.B"
+                    android:text="تاريخ الميلاد"
                     android:layout_toRightOf="@id/dobImageView"
                     style="@style/profileDetailsTextMain" />
 
@@ -160,7 +160,7 @@
 
                     android:layout_alignParentEnd="true"
                     android:layout_marginEnd="2dp"
-                    android:text="edit" />
+                    android:text="تعديل" />
             </RelativeLayout>
 
             <View style="@style/proifleDetailsView" />

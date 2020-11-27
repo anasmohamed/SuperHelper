@@ -16,7 +16,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
-        android:text="conplete this information"
+        android:text="من فضلك اكمل هذه المعلومات"
         android:textSize="20sp"
         android:textColor="#000"
         app:layout_constraintEnd_toEndOf="parent"
@@ -30,7 +30,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
-        android:text="this info help you in the community"
+        android:text="سعداء بوجودك معانا"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -47,7 +47,7 @@
         android:layout_marginEnd="16dp"
         android:ems="10"
         android:focusable="false"
-        android:hint="enter your data of birth"
+        android:hint="تاريخ الميلاد"
         android:inputType="none"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -61,8 +61,8 @@
         android:layout_marginTop="24dp"
         android:layout_marginEnd="16dp"
         android:ems="10"
-        android:hint="enter your phone number"
-        android:text="01122594361"
+        android:hint="رقم الموبايل"
+
         android:inputType="phone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -102,7 +102,7 @@
             android:checked="true"
             tools:layout_editor_absoluteX="198dp"
             tools:layout_editor_absoluteY="232dp"
-            tools:text="Male" />
+            tools:text="ذكر" />
 
         <RadioButton
             android:id="@+id/female_radio_btn_sign_up_last_page"
@@ -112,7 +112,7 @@
             android:layout_marginTop="20dp"
             tools:layout_editor_absoluteX="31dp"
             tools:layout_editor_absoluteY="232dp"
-            tools:text="Female" />
+            tools:text="انثى" />
     </RadioGroup>
 
     <Button
@@ -120,7 +120,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:text="Take Pic for your ID Card"
+        android:text="التقط صورة للبطاقة الشخصية"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/gender_radio_group_sign_up_last_page" />

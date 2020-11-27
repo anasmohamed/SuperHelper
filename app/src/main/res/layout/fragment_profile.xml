@@ -94,7 +94,7 @@
                     <TextView
                         android:id="@+id/sign_out_button"
                         style="@style/profileStyledBackButton"
-                        android:text="Sign out" />
+                        android:text="تسجيل خروج" />
                 </RelativeLayout>
 
             </LinearLayout>
