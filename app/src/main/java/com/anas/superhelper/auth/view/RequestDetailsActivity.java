@@ -203,7 +203,7 @@ String status;
                                                     showAddItemDialog(offerSenderPhoneNumber);
                                                 }
                                             })
-                                            .setNegativeButton("لا", new DialogInterface.OnClickListener() {
+                                            .setNegativeButton("لا اوفق", new DialogInterface.OnClickListener() {
                                                 public void onClick(DialogInterface dialog, int id) {
                                                     //  Action for 'NO' Button
                                                     dialog.cancel();
