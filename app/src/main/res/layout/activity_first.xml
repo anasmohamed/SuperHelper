@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="411dp"
-        android:text="We Build The Future Of Help Service"
+        android:text="مستقبل المساعدة عبر الانترنت"
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
         app:layout_constraintEnd_toEndOf="parent"
@@ -43,7 +43,7 @@
             android:layout_marginEnd="16dp"
             android:background="@drawable/roundedbutton"
 
-            android:text="SignUp As Helper"
+            android:text="@string/signup_as_helper"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
@@ -58,7 +58,7 @@
             android:layout_marginEnd="16dp"
 
             android:background="@drawable/roundedbutton"
-            android:text="SignUp To Find Help"
+            android:text="انشاء حساب للحصول على المساهدة"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/sign_up_as_helper_btn" />
@@ -71,7 +71,7 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
             android:background="@drawable/roundedbutton"
-            android:text="Login"
+            android:text="تسجيل الدخول"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.507"
             app:layout_constraintStart_toStartOf="parent"
