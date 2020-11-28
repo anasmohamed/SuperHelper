@@ -99,18 +99,20 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:checked="true"
+            android:text="ذكر"
             tools:layout_editor_absoluteX="198dp"
             tools:layout_editor_absoluteY="232dp"
-            tools:text="ذكر" />
+            />
 
         <RadioButton
             android:id="@+id/female_radio_btn_sign_up_last_page"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
+            android:text="أنثى"
             tools:layout_editor_absoluteX="31dp"
             tools:layout_editor_absoluteY="232dp"
-            tools:text="انثى" />
+            />
     </RadioGroup>
 
     <Button
