@@ -68,9 +68,9 @@ disableTypeTitle.setVisibility(View.GONE);
                 Log.i("chips", interestsEditText.getText().toString());
 
                 if (addressEditText.getText().toString().isEmpty()) {
-                    addressEditText.setError("Field cannot be empty");
+                    addressEditText.setError("يجب ادخال البيانات بشكل صحيح");
                 } else if (jobEditText.getText().toString().isEmpty()) {
-                    jobEditText.setError("Field cannot be empty");
+                    jobEditText.setError("يجب ادخال البيانات بشكل صحيح");
                 } else {
                     FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                     FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();

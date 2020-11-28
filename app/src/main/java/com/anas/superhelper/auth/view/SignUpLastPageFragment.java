@@ -91,12 +91,12 @@ public class SignUpLastPageFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 if (phoneNumberET.getText().toString().isEmpty()) {
-                    phoneNumberET.setError("Field cannot be empty");
+                    phoneNumberET.setError("يجب ادخال البيانات بشكل صحيح");
                 } else if (dateET.getText().toString().isEmpty()) {
-                    dateET.setError("Field cannot be empty");
+                    dateET.setError("يجب ادخال البيانات بشكل صحيح");
 
                 } else if (!isIdImageTaken) {
-                    Toast.makeText(getContext(), "you should upload your personal id image", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(), "يجب رفع صورة البطاقة", Toast.LENGTH_LONG).show();
                 } else {
                     user.setDate(dateET.getText().toString());
                     user.setPhone(phoneNumberET.getText().toString());

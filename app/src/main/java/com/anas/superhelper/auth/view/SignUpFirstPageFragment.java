@@ -36,10 +36,10 @@ public class SignUpFirstPageFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 if (firstNameET.getText().toString().isEmpty()) {
-                    firstNameET.setError("Field cannot be empty");
+                    firstNameET.setError("يجب ادخال البيانات بشكل صحيح");
                 }
                else if(lastNameEt.getText().toString().isEmpty())
-                {                    lastNameEt.setError("Field cannot be empty");
+                {                    lastNameEt.setError("يجب ادخال البيانات بشكل صحيح");
 
 
                 }else{
