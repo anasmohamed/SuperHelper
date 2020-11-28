@@ -105,7 +105,7 @@ String status;
         double mLat = Double.valueOf(latitude);
         double mLon = Double.valueOf(longitude);
         LatLng mylocation = new LatLng(mLat, mLon);
-        map.addMarker(new MarkerOptions().position(mylocation).title("Help Location")).showInfoWindow();
+        map.addMarker(new MarkerOptions().position(mylocation).title("موقع المساعدة المطلوبة")).showInfoWindow();
         map.getUiSettings().setMyLocationButtonEnabled(true);
         map.moveCamera(CameraUpdateFactory.newLatLngZoom(mylocation, 15));
     }
@@ -253,7 +253,7 @@ String status;
                 offer.setOfferTime(new SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(new Date()));
                 offer.setOfferDate(new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date()));
                 offer.setReceiver(receiverUID);
-                offer.setStatus("Pending");
+                offer.setStatus("لم يتم الرد بعد");
                 offer.setSenderProfileImageURl(profileImageURL);
                 offer.setSenderName(offerSenderName);
                 offer.setSenderPhoneNumber(phoneNumber);

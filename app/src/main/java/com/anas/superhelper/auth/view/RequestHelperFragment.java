@@ -27,8 +27,8 @@ import com.anas.superhelper.auth.viewmodels.RequestHelperViewModel;
 import static android.content.Context.MODE_PRIVATE;
 
 public class RequestHelperFragment extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
-    String[] whoIsTheHelpFor = {"Individual Male", "Individual Female", "Couple"};
-    String[] whatYouNeedHelpWith = {"read book", "crossing the street", "old man helping"};
+    String[] whoIsTheHelpFor = {"رجل وحيد", "امرأه وحيدة", "زوج"};
+    String[] whatYouNeedHelpWith = {"قراءه كتاب", "الخروج", "مساعدة رجل مسن"};
     Spinner whoIsTheHelpForSpinner, whatYouNeedHelpWithSpinner;
     EditText relevantTagsET, requestTitleET, requestDetailsET;
     String whoIsTheHelpForText, whatYouNeedHelpWithText;
