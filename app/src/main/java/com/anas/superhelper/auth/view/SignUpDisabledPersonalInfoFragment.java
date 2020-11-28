@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.MultiAutoCompleteTextView;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -30,9 +31,9 @@ public class SignUpDisabledPersonalInfoFragment extends Fragment implements
     Fragment signUpLastFragment;
     Bundle bundle;
     User user;
-    String[] values = {"reading", "sports", "movies", "programming"};
-    String[] country = {"vision Impairment.", "deaf", "physical disability"};
-
+    String[] values = {"القراءه", "الرياضة", "مشاهدة الافلام", "البرمجة"};
+    String[] country = {"ضعف الرؤية.", "الصم", "اعافة جسدية"};
+TextView disableTypeTitle;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -40,6 +41,7 @@ public class SignUpDisabledPersonalInfoFragment extends Fragment implements
         addressEditText = (EditText) view.findViewById(R.id.address_et);
         jobEditText = (EditText) view.findViewById(R.id.job_et);
         disabledTypeSpinner = (Spinner) view.findViewById(R.id.disable_type_spinner);
+        disableTypeTitle = (TextView)view.findViewById(R.id.disable_type_title);
         interestsEditText = (MultiAutoCompleteTextView) view.findViewById(R.id.interests_text_view);
         nextBtn = (Button) view.findViewById(R.id.next_btn_disabled_personal_info);
         disabledTypeSpinner.setOnItemSelectedListener(this);
@@ -58,6 +60,7 @@ public class SignUpDisabledPersonalInfoFragment extends Fragment implements
 if(user.getUserType().equalsIgnoreCase("helper"))
 {
     disabledTypeSpinner.setVisibility(View.GONE);
+disableTypeTitle.setVisibility(View.GONE);
 }
         nextBtn.setOnClickListener(new View.OnClickListener() {
             @Override
