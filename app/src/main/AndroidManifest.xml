@@ -27,6 +27,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+<<<<<<< HEAD
         <activity android:name=".auth.view.RequestDetailsActivity"></activity>
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
@@ -39,6 +40,12 @@
         <activity android:name=".auth.view.MapsFragment" />
         <activity android:name=".MainActivity"></activity>
         <activity android:name=".auth.view.RequestHelperFragment" />
+=======
+        <activity android:name=".ProfileActivity">
+
+        </activity>
+        <activity android:name=".auth.view.RequestHelperActivity" />
+>>>>>>> parent of 883a06e... request helper
         <activity
             android:name=".auth.view.LoginActivity"
             android:windowSoftInputMode="adjustResize">

@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/home"
+        android:id="@+id/page_1"
         android:enabled="true"
         android:icon="@drawable/ic_baseline_home_24"
         android:title="home"/>
     <item
+<<<<<<< HEAD
         android:id="@+id/account"
+=======
+        android:id="@+id/page_2"
+>>>>>>> parent of 883a06e... request helper
         android:enabled="true"
         android:icon="@drawable/ic_baseline_account_circle_24"
         android:title="account"/>

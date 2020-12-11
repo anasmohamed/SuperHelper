@@ -90,6 +90,7 @@ public class User implements Serializable, Parcelable {
         this.lastName = lastName;
     }
 
+<<<<<<< HEAD
 //    public Object getIdImage() {
 //        return idImage;
 //    }
@@ -97,6 +98,16 @@ public class User implements Serializable, Parcelable {
 //    public void setIdImage(Object idImage) {
 //        this.idImage = idImage;
 //    }
+=======
+    @SuppressWarnings("WeakerAccess")
+    public String email;
+
+    public boolean isAuthenticated;
+   private String password;
+   private String date;
+   private String gender;
+   private String phone;
+>>>>>>> parent of 883a06e... request helper
 
     public String getPassword() {
         return password;
