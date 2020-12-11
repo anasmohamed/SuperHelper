@@ -26,7 +26,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
-                android:text="لمن تقدم هذه المساعدة"
+                android:text="@string/for_who_helo"
                 android:textSize="20sp"
                 android:layout_gravity="center"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -54,7 +54,7 @@
                 android:layout_marginTop="16dp"
                 android:textSize="20sp"
                 android:layout_gravity="center"
-                android:text="ماذا تحتاح هذه المساعده"
+                android:text="@string/for_what_helo"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/how_is_the_help_for_spinner" />
@@ -79,7 +79,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="28dp"
                 android:layout_marginEnd="16dp"
-                android:hint="عنوان الطلب"
+                android:hint="@string/title"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
@@ -94,7 +94,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="32dp"
                 android:layout_marginEnd="16dp"
-                android:hint="اشياء متعلقة بالطلب"
+                android:hint="@string/releted_things"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
@@ -109,7 +109,7 @@
                 android:layout_marginEnd="16dp"
                 android:ems="10"
                 android:gravity="start|top"
-                android:hint="تفاصيل الطلب"
+                android:hint="@string/request_details"
                 android:inputType="textMultiLine"
                 android:lines="3"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -127,7 +127,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="32dp"
                 android:layout_marginEnd="16dp"
-                android:text="تحديد الموقع" />
+                android:text="@string/location" />
 
             <Button
                 android:id="@+id/send_request_helper_btn"
@@ -135,10 +135,10 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:background="@drawable/roundedbutton"
-android:layout_marginTop="8dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
-                android:text="ارسال الطلب" />
+                android:text="@string/sent_req" />
 
             <Button
                 android:id="@+id/cancel_request_helper_btn"
@@ -150,7 +150,7 @@ android:layout_marginTop="8dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
-                android:text="الغاء" />
+                android:text="@string/cancel" />
         </LinearLayout>
     </ScrollView>
 

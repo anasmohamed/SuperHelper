@@ -28,10 +28,18 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:orientation="horizontal"
-        android:gravity="end"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/mapView">
+        <TextView
+            android:id="@+id/request_title_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/request_title"
+            android:layout_marginStart="10dp"
+            tools:layout_editor_absoluteX="34dp"
+            tools:layout_editor_absoluteY="102dp" />
+
         <TextView
             android:id="@+id/request_title_value"
             android:layout_width="wrap_content"
@@ -39,14 +47,6 @@
             android:layout_marginStart="20dp"
             android:text="TextView"
             tools:layout_editor_absoluteX="124dp"
-            tools:layout_editor_absoluteY="102dp" />
-        <TextView
-            android:id="@+id/request_title_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="عنوان الطلب"
-            android:layout_marginStart="10dp"
-            tools:layout_editor_absoluteX="34dp"
             tools:layout_editor_absoluteY="102dp" />
 
 
@@ -60,10 +60,18 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:orientation="horizontal"
-        android:gravity="end"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/request_title_linear_layout">
+        <TextView
+            android:id="@+id/request_for_who_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:text="@string/for_how"
+            tools:layout_editor_absoluteX="34dp"
+            tools:layout_editor_absoluteY="102dp" />
+
         <TextView
             android:id="@+id/request_for_who_value"
             android:layout_width="wrap_content"
@@ -72,14 +80,6 @@
             android:text="TextView"
 
             tools:layout_editor_absoluteX="124dp"
-            tools:layout_editor_absoluteY="102dp" />
-        <TextView
-            android:id="@+id/request_for_who_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:text="لمن هذا الطلب"
-            tools:layout_editor_absoluteX="34dp"
             tools:layout_editor_absoluteY="102dp" />
 
 
@@ -93,10 +93,19 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:orientation="horizontal"
-        android:gravity="end"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/request_for_who_linear_layout">
+        <TextView
+            android:id="@+id/request_for_what_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/helping_type"
+            android:layout_marginStart="10dp"
+            tools:layout_editor_absoluteX="34dp"
+            tools:layout_editor_absoluteY="102dp" />
+
+
         <TextView
             android:id="@+id/request_for_what_value"
             android:layout_width="wrap_content"
@@ -105,15 +114,6 @@
             android:text="TextView"
             tools:layout_editor_absoluteX="124dp"
             tools:layout_editor_absoluteY="102dp" />
-        <TextView
-            android:id="@+id/request_for_what_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="نوع المساعدة"
-            android:layout_marginStart="10dp"
-            tools:layout_editor_absoluteX="34dp"
-            tools:layout_editor_absoluteY="102dp" />
-
 
     </LinearLayout>
     <LinearLayout
@@ -123,11 +123,18 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
-        android:gravity="end"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/request_for_what_linear_layout">
+        <TextView
+            android:id="@+id/request_details_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/request_details"
+            android:layout_marginStart="10dp"
+            tools:layout_editor_absoluteX="34dp"
+            tools:layout_editor_absoluteY="102dp" />
         <TextView
             android:id="@+id/request_details_value"
             android:layout_width="wrap_content"
@@ -136,14 +143,7 @@
             android:text="TextView"
             tools:layout_editor_absoluteX="124dp"
             tools:layout_editor_absoluteY="102dp" />
-        <TextView
-            android:id="@+id/request_details_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="تفاصيل الطلب"
-            android:layout_marginStart="10dp"
-            tools:layout_editor_absoluteX="34dp"
-            tools:layout_editor_absoluteY="102dp" />
+
 
 
     </LinearLayout>
@@ -153,7 +153,7 @@
         android:layout_width="385dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:text="العروض"
+        android:text="@string/offers"
         android:textDirection="rtl"
         android:textAlignment="center"
         android:textSize="20sp"
@@ -185,7 +185,7 @@
         android:layout_marginEnd="16dp"
         android:background="@drawable/roundedbutton"
         android:layout_marginBottom="16dp"
-        android:text="اضف عرض"
+        android:text="@string/add_offer"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

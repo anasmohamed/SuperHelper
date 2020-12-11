@@ -14,7 +14,9 @@
         android:layout_marginTop="22dp"
         android:layout_marginEnd="16dp"
         android:ems="10"
-        android:hint="اكتب تفاصيل عرضك هنا"
+        android:paddingStart="5dp"
+        android:paddingEnd="5dp"
+        android:hint="@string/request_details_here"
         android:background="@drawable/edit_text_round_border"
         android:gravity="start|top"
         android:inputType="textMultiLine"
@@ -30,7 +32,7 @@
         android:layout_marginTop="24dp"
         android:gravity="center"
         android:textSize="30sp"
-        android:text="تقديم المساعدة"
+        android:text="@string/offer_help"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -59,7 +61,7 @@
             android:layout_marginStart="20dp"
             android:background="@drawable/edit_text_round_border"
             android:ems="10"
-            android:hint="سعر الساعة"
+            android:hint="@string/hour_price_text"
             android:inputType="number"
             tools:layout_editor_absoluteX="105dp"
             tools:layout_editor_absoluteY="244dp" />
@@ -70,7 +72,7 @@
             android:gravity="end"
             android:layout_weight="1"
             android:layout_marginStart="10dp"
-            android:text="سعر الساعة"
+            android:text="@string/hour_price"
        />
     </LinearLayout>
 
@@ -91,7 +93,7 @@
             android:id="@+id/cancel_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="الغاء"
+            android:text="@string/cancel"
             android:background="@drawable/roundedbutton"
             android:layout_weight="1"
             tools:layout_editor_absoluteX="103dp"
@@ -103,7 +105,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
-            android:text="اضافة العرض"
+            android:text="@string/add_offer_btn"
             android:layout_marginBottom="20dp"
             android:background="@drawable/roundedbutton"
             tools:layout_editor_absoluteX="241dp"

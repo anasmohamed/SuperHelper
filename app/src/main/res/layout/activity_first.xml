@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="411dp"
-        android:text="مستقبل المساعدة عبر الانترنت"
+        android:text="@string/future_helping"
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
         app:layout_constraintEnd_toEndOf="parent"
@@ -58,7 +58,7 @@
             android:layout_marginEnd="16dp"
 
             android:background="@drawable/roundedbutton"
-            android:text="انشاء حساب للحصول على المساهدة"
+            android:text="@string/sign_in_if_you_need_help"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/sign_up_as_helper_btn" />
@@ -71,7 +71,7 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
             android:background="@drawable/roundedbutton"
-            android:text="تسجيل الدخول"
+            android:text="@string/log_in"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.507"
             app:layout_constraintStart_toStartOf="parent"

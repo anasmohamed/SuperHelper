@@ -74,7 +74,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="14dp"
-            android:text="سعر الساعة : "
+            android:text="@string/houre_price"
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/offer_sender_profile_image"
@@ -107,7 +107,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="14dp"
-            android:text="حالة الطلب : "
+            android:text="@string/order_status"
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/offer_sender_profile_image"
@@ -150,7 +150,7 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginBottom="20dp"
                 android:gravity="start"
-                android:text="التاريخ : "
+                android:text="@string/date"
                 android:textSize="20sp" />
         </LinearLayout>
 <LinearLayout
@@ -176,7 +176,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="right"
         android:layout_marginBottom="20dp"
-        android:text="الوقت : "
+        android:text="@string/time"
         android:textSize="20sp"
 
         />
@@ -196,7 +196,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
 
         android:background="@drawable/roundedbutton"
-        android:text="قبول هذا العرض"
+        android:text="@string/accept"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/date_and_time_linear_layout" />
