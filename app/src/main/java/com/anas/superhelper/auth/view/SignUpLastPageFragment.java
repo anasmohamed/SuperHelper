@@ -5,7 +5,6 @@ import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
-import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
@@ -40,11 +39,12 @@ public class SignUpLastPageFragment extends Fragment {
     int TAKE_PHOTO_CODE = 0;
     int REQUEST_CAMERA_PERMISSION = 1;
     boolean isIdImageTaken = false;
+    Bitmap photo;
     private SignUpViewModel signUpViewModel;
     private RadioGroup radioGenderGroup;
     private RadioButton radioButton;
     private int mYear, mMonth, mDay;
-    Bitmap photo;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -91,25 +91,24 @@ public class SignUpLastPageFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 if (phoneNumberET.getText().toString().isEmpty()) {
-                    phoneNumberET.setError("يجب ادخال البيانات بشكل صحيح");
+                    phoneNumberET.setError(getString(R.string.enter_data_correctly));
                 } else if (dateET.getText().toString().isEmpty()) {
-                    dateET.setError("يجب ادخال البيانات بشكل صحيح");
+                    dateET.setError(getString(R.string.enter_data_correctly));
 
                 } else if (!isIdImageTaken) {
-                    Toast.makeText(getContext(), "يجب رفع صورة البطاقة", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(), getString(R.string.please_upload_image), Toast.LENGTH_LONG).show();
                 } else {
                     user.setDate(dateET.getText().toString());
                     user.setPhone(phoneNumberET.getText().toString());
                     user.setGender(radioButton.getText().toString());
-                    signUpViewModel.signUp(user,s -> {
-                        if(s.equalsIgnoreCase("true"))
-                        {
-                            signUpViewModel.uploadIdImage(photo,user.getEmail());
-                              startActivity(new Intent(getActivity(), MainActivity.class));
+                    signUpViewModel.signUp(user, s -> {
+                        if (s.equalsIgnoreCase("true")) {
+                            signUpViewModel.uploadIdImage(photo, user.getEmail());
+                            startActivity(new Intent(getActivity(), MainActivity.class));
 
-                        }else{
+                        } else {
 //                            Somthing went wrong please see your data
-                            Toast.makeText(getContext(),"" + s,Toast.LENGTH_LONG).show();
+                            Toast.makeText(getContext(), "" + s, Toast.LENGTH_LONG).show();
                         }
 
                     });
@@ -126,10 +125,11 @@ public class SignUpLastPageFragment extends Fragment {
         });
         return view;
     }
-void isSignUpSuccessfull(String SignUpStatus)
-{
 
-}
+    void isSignUpSuccessfull(String SignUpStatus) {
+
+    }
+
     //+10 changed its sinature as Fragment; without it  onRequestPermissionsResult won't bbe called
     private void myCameraPermission() {
         if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
@@ -150,15 +150,14 @@ void isSignUpSuccessfull(String SignUpStatus)
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-if(requestCode == REQUEST_CAMERA_PERMISSION && requestCode == RESULT_OK)
-{
-    takePicture();
+        if (requestCode == REQUEST_CAMERA_PERMISSION && requestCode == RESULT_OK) {
+            takePicture();
 
-}
-        if (requestCode == TAKE_PHOTO_CODE && resultCode == RESULT_OK ) {
+        }
+        if (requestCode == TAKE_PHOTO_CODE && resultCode == RESULT_OK) {
             Log.d("CameraDemo", data.getExtras().get("data").toString());
             isIdImageTaken = true;
-            photo = (Bitmap)data.getExtras()
+            photo = (Bitmap) data.getExtras()
                     .get("data");
             Log.d("CameraDemo", photo.toString());
 //

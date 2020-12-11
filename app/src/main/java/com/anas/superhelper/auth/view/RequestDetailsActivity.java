@@ -142,11 +142,11 @@ String status;
     }
     void getOfferStatus(String status) {
        this.status = status;
-        if (status.equalsIgnoreCase("موافقة ")) {
+        if (status.equalsIgnoreCase(getString(R.string.accept_status))) {
             builder.setMessage(R.string.dialog_message).setTitle(R.string.dialog_title);
-            builder.setMessage("لقد تم قبول عرضك" )
+            builder.setMessage(getString(R.string.offer_accepted ))
                     .setCancelable(false)
-                    .setPositiveButton("تم", new DialogInterface.OnClickListener() {
+                    .setPositiveButton(getString(R.string.done_btn), new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
                             finish();
                             dialog.cancel();
@@ -156,7 +156,7 @@ String status;
             //Creating dialog box
             AlertDialog alert = builder.create();
             //Setting the title manually
-            alert.setTitle("حالة العرض");
+            alert.setTitle(getString(R.string.offer_status));
             alert.show();
         }
     }
@@ -166,7 +166,7 @@ String status;
         Log.i("offerId",offerSenderId);
         if (offerSenderId.equalsIgnoreCase(firebaseUser.getUid()) && addOfferBtn != null) {
             addOfferBtn.setEnabled(false);
-            addOfferBtn.setText("لقد اضفت عرض بالفعل");
+            addOfferBtn.setText(R.string.already_add_offer);
 
             requestHelperViewModel.getSpecificValueFromOffers(keyList.get(itemIndex), offersKeysList.get(itemIndex), "status", this::getOfferStatus);
 
@@ -195,15 +195,15 @@ String status;
                                 listLiveData.getValue(),
                                 (clickedRequest) -> {
                                     builder.setMessage(R.string.dialog_message).setTitle(R.string.dialog_title);
-                                    builder.setMessage("هل تريد قبول العرض؟")
+                                    builder.setMessage(getString(R.string.do_you_accept_this_offer))
                                             .setCancelable(false)
-                                            .setPositiveButton("موافق", new DialogInterface.OnClickListener() {
+                                            .setPositiveButton(getString(R.string.accept), new DialogInterface.OnClickListener() {
                                                 public void onClick(DialogInterface dialog, int id) {
                                                     requestHelperViewModel.updateOffersStatus(keyList.get(itemIndex), offersKeysList, offersKeysList.get(clickedRequest.getOfferNumberInTheList()));
                                                     showAddItemDialog(offerSenderPhoneNumber);
                                                 }
                                             })
-                                            .setNegativeButton("لا اوفق", new DialogInterface.OnClickListener() {
+                                            .setNegativeButton(getString(R.string.no), new DialogInterface.OnClickListener() {
                                                 public void onClick(DialogInterface dialog, int id) {
                                                     //  Action for 'NO' Button
                                                     dialog.cancel();
@@ -213,7 +213,7 @@ String status;
                                     //Creating dialog box
                                     AlertDialog alert = builder.create();
                                     //Setting the title manually
-                                    alert.setTitle("قبول العرض");
+                                    alert.setTitle(getString(R.string.offer_accept));
                                     alert.show();
                                 }
                         )

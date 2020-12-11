@@ -37,13 +37,13 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (emailET.getText().toString().isEmpty()) {
-                    emailET.setError("Field cannot be empty");
+                    emailET.setError(getString(R.string.enter_data_correctly));
 
                 } else if (!validateEmail(emailET.getText().toString())) {
-                    emailET.setError("enter valid email");
+                    emailET.setError(getString(R.string.valid_email));
 
                 } else if (passwordET.getText().toString().isEmpty()) {
-                    passwordET.setError("enter valid password");
+                    passwordET.setError(getString(R.string.valid_password));
 
                 } else {
                     loginViewModel.login(emailET.getText().toString(), passwordET.getText().toString());

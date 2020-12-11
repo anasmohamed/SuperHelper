@@ -43,16 +43,16 @@ public class SignUpSecondPageFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 if (emailET.getText().toString().isEmpty()) {
-                    emailET.setError("يجب ادخال هذه البيانات");
+                    emailET.setError(getString(R.string.must_enter));
                 } else if (confirmEmailET.getText().toString().isEmpty()) {
-                    confirmEmailET.setError("يجب ادخال البيانات بشكل صحيح");
+                    confirmEmailET.setError(getString(R.string.enter_data_correctly));
 
 
                 } else if (!confirmEmailET.getText().toString().equals(emailET.getText().toString())) {
-                    confirmEmailET.setError("يجب ادخال البيانات بشكل صحيح");
-                    emailET.setError("البيانات يجب ان تكون متطابقة");
+                    confirmEmailET.setError(getString(R.string.enter_data_correctly));
+                    emailET.setError(getString(R.string.must_equle));
                 } else if (!validate(emailET.getText().toString())){
-                    emailET.setError("ادخل ايميل صحيح");
+                    emailET.setError(getString(R.string.enter_correct_email));
 
                 }
                 else {

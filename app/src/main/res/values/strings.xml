@@ -71,5 +71,19 @@
     <string name="time">time :</string>
     <string name="date">date :</string>
     <string name="accept">accept this offer</string>
+    <string name="enter_data_correctly">يجب ادخال البيانات بشكل صحيح</string>
+    <string name="please_upload_image">يجب رفع صورة البطاقة</string>
+    <string name="must_enter">يجب ادخال هذه البيانات</string>
+    <string name="must_equle">البيانات يجب ان تكون متطابقة</string>
+    <string name="enter_correct_email">ادخل ايميل صحيح</string>
+    <string name="valid_email">enter valid email</string>
+    <string name="valid_password">enter valid password</string>
+    <string name="accept_status">\"accept \"</string>
+    <string name="offer_accepted">لقد تم قبول عرضك</string>
+    <string name="offer_status">حالة العرض</string>
+    <string name="already_add_offer">لقد اضفت عرض بالفعل</string>
+    <string name="do_you_accept_this_offer">هل تريد قبول العرض؟</string>
+    <string name="no">لا اوفق</string>
+    <string name="offer_accept">قبول العرض</string>
 
 </resources>
