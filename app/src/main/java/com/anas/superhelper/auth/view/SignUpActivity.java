@@ -28,6 +28,7 @@ public class SignUpActivity extends AppCompatActivity {
         manager.beginTransaction().add(R.id.frameLayout,signUpFirstPageFragment,"sign_up_second_page_fragment")
                 .addToBackStack(null).commit();
 
+
     }
     @Override
     public boolean onSupportNavigateUp() {

@@ -31,8 +31,8 @@ public class SignUpDisabledPersonalInfoFragment extends Fragment implements
     Fragment signUpLastFragment;
     Bundle bundle;
     User user;
-    String[] values = {"القراءه", "الرياضة", "مشاهدة الافلام", "البرمجة"};
-    String[] country = {"ضعف الرؤية.", "الصم", "اعافة جسدية"};
+    String[] values = {getString(R.string.reading_title), getString(R.string.sport), getString(R.string.watching_movies), getString(R.string.programming)};
+    String[] country = {getString(R.string.vision_Impairment), getString(R.string.deaf), getString(R.string.physical_disability)};
 TextView disableTypeTitle;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -68,9 +68,9 @@ disableTypeTitle.setVisibility(View.GONE);
                 Log.i("chips", interestsEditText.getText().toString());
 
                 if (addressEditText.getText().toString().isEmpty()) {
-                    addressEditText.setError("يجب ادخال البيانات بشكل صحيح");
+                    addressEditText.setError(getString(R.string.enter_data_correctly));
                 } else if (jobEditText.getText().toString().isEmpty()) {
-                    jobEditText.setError("يجب ادخال البيانات بشكل صحيح");
+                    jobEditText.setError(getString(R.string.enter_data_correctly));
                 } else {
                     FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                     FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();

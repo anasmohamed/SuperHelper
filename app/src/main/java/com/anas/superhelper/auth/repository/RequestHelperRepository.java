@@ -1,10 +1,12 @@
 package com.anas.superhelper.auth.repository;
 
+import android.content.res.Resources;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 
+import com.anas.superhelper.R;
 import com.anas.superhelper.auth.models.Offer;
 import com.anas.superhelper.auth.models.RequestHelper;
 import com.google.firebase.auth.FirebaseAuth;
@@ -177,11 +179,12 @@ public class RequestHelperRepository {
         for (int i = 0 ;i < offersKeys.size();i++){
            if (offersKeys.get(i) == thisOfferKey) {
                mRequestsRef.child(requestKey).child("Offers").child(offersKeys.get(i).toString()).child("status").setValue("accept");
-               mRef.child(firebaseUser.getUid()).child("requests").child(requestKey).child("Offers").child(offersKeys.get(i).toString()).child("status").setValue("تم قبول عرضك");
+
+               mRef.child(firebaseUser.getUid()).child("requests").child(requestKey).child("Offers").child(offersKeys.get(i).toString()).child("status").setValue(Resources.getSystem().getString(R.string.accepted));
 
            }else {
                mRequestsRef.child(requestKey).child("Offers").child(offersKeys.get(i).toString()).child("status").setValue("closed");
-               mRef.child(firebaseUser.getUid()).child("requests").child(requestKey).child("Offers").child(offersKeys.get(i).toString()).child("status").setValue("مغلق");
+               mRef.child(firebaseUser.getUid()).child("requests").child(requestKey).child("Offers").child(offersKeys.get(i).toString()).child("status").setValue(Resources.getSystem().getString(R.string.closed));
 
            }
        }

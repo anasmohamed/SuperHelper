@@ -88,5 +88,20 @@
     <string name="do_you_accept_this_offer">هل تريد قبول العرض؟</string>
     <string name="no">لا اوفق</string>
     <string name="offer_accept">قبول العرض</string>
+    <string name="couple">زوج</string>
+    <string name="one_women">امرأه وحيدة</string>
+    <string name="one_man">رجل وحيد</string>
+    <string name="old_man_helping">مساعدة رجل مسن</string>
+    <string name="walking">الخروج</string>
+    <string name="reading">قراءه كتاب</string>
+    <string name="reading_title">القراءه</string>
+    <string name="sport">الرياضة</string>
+    <string name="watching_movies">مشاهدة الافلام</string>
+    <string name="programming">البرمجة</string>
+    <string name="vision_Impairment">ضعف الرؤية.</string>
+    <string name="deaf">الصم</string>
+    <string name="physical_disability">اعافة جسدية</string>
+    <string name="closed">مغلق</string>
+    <string name="accepted">تم قبول عرضك</string>
 
 </resources>
