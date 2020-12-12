@@ -79,9 +79,13 @@ public class MainActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.arabic:
                setLocale(this,"ar");
+                finish();
+
                 break;
             case R.id.english:
+                setLocale(this,"en");
                 finish();
+
                 break;
         }
         return super.onOptionsItemSelected(item);

@@ -102,5 +102,6 @@
     <string name="accepted">accepted</string>
     <string name="arabic">Arabic</string>
     <string name="eng">English</string>
+    <string name="super_helper">Super Helper</string>
 
 </resources>

@@ -85,7 +85,7 @@
         android:layout_marginTop="297dp"
         android:layout_marginBottom="17dp"
         android:fontFamily="@font/ekra_erif"
-        android:text="المساعد"
+        android:text="@string/super_helper"
         android:textSize="40sp"
         app:layout_constraintBottom_toTopOf="@+id/slogan_tile"
         app:layout_constraintEnd_toEndOf="parent"

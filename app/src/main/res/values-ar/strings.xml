@@ -4,9 +4,9 @@
     <string name="app_name">المساعد</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="first_name">first name</string>
-    <string name="second_name">last name</string>
-    <string name="mobile">mobile number</string>
+    <string name="first_name">الاسم الاول</string>
+    <string name="second_name">الاسم الاخير</string>
+    <string name="mobile">رقم الموبايل</string>
     <string name="dialog_message">هل تريد قبول العرض</string>
     <string name="dialog_title">قبول العرض</string>
     <string name="signup_as_helper">تسجيل لتقديم المساعدة</string>
@@ -77,9 +77,9 @@
     <string name="must_enter">يجب ادخال هذه البيانات</string>
     <string name="must_equle">البيانات يجب ان تكون متطابقة</string>
     <string name="enter_correct_email">ادخل ايميل صحيح</string>
-    <string name="valid_email">enter valid email</string>
-    <string name="valid_password">enter valid password</string>
-    <string name="accept_status">\"accept \"</string>
+    <string name="valid_email">اخل بريد الكترونى صحيح</string>
+    <string name="valid_password">ادخل كلمة سر صحيحة</string>
+    <string name="accept_status">قبول</string>
     <string name="offer_accepted">لقد تم قبول عرضك</string>
     <string name="offer_status">حالة العرض</string>
     <string name="already_add_offer">لقد اضفت عرض بالفعل</string>
@@ -103,5 +103,6 @@
     <string name="accepted">تم قبول عرضك</string>
     <string name="arabic">عربى</string>
     <string name="eng">انجليزى</string>
+    <string name="super_helper">المساعد</string>
 
 </resources>
