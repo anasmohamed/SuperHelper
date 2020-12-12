@@ -27,8 +27,8 @@ import com.anas.superhelper.auth.viewmodels.RequestHelperViewModel;
 import static android.content.Context.MODE_PRIVATE;
 
 public class RequestHelperFragment extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
-    String[] whoIsTheHelpFor = {getString(R.string.one_man), getString(R.string.one_women), getString(R.string.couple)};
-    String[] whatYouNeedHelpWith = {getString(R.string.reading), getString(R.string.walking), getString(R.string.old_man_helping)};
+    String[] whoIsTheHelpFor;
+    String[] whatYouNeedHelpWith;
     Spinner whoIsTheHelpForSpinner, whatYouNeedHelpWithSpinner;
     EditText relevantTagsET, requestTitleET, requestDetailsET;
     String whoIsTheHelpForText, whatYouNeedHelpWithText;
@@ -45,6 +45,8 @@ public class RequestHelperFragment extends AppCompatActivity implements AdapterV
         whoIsTheHelpForSpinner = (Spinner) findViewById(R.id.how_is_the_help_for_spinner);
         whatYouNeedHelpWithSpinner = (Spinner) findViewById(R.id.what_you_need_help_with_spinner);
         getLocationBtn = (Button) findViewById(R.id.getLocationBtn);
+        whoIsTheHelpFor = new String[]{getApplicationContext().getString(R.string.one_man), getApplicationContext().getString(R.string.one_women), getApplicationContext().getString(R.string.couple)};
+        whatYouNeedHelpWith = new String[]{getApplicationContext().getString(R.string.reading), getApplicationContext().getString(R.string.walking), getApplicationContext().getString(R.string.old_man_helping)};
 
         requestHelperViewModel = ViewModelProviders.of(this).get(RequestHelperViewModel.class);
         sendHelperRequest = (Button) findViewById(R.id.send_request_helper_btn);

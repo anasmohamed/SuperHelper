@@ -253,7 +253,7 @@ String status;
                 offer.setOfferTime(new SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(new Date()));
                 offer.setOfferDate(new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date()));
                 offer.setReceiver(receiverUID);
-                offer.setStatus("لم يتم الرد بعد");
+                offer.setStatus("binding");
                 offer.setSenderProfileImageURl(profileImageURL);
                 offer.setSenderName(offerSenderName);
                 offer.setSenderPhoneNumber(phoneNumber);

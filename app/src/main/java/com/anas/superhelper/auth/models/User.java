@@ -20,7 +20,7 @@ public class User implements Serializable, Parcelable {
     private String disabledType;
     private String job;
     private String address;
-    private String Interests;
+    private String interests;
     private String profileImageURL;
     private String userType;
     public String getDisabledType() {
@@ -48,11 +48,11 @@ public class User implements Serializable, Parcelable {
     }
 
     public String getInterests() {
-        return Interests;
+        return interests;
     }
 
     public void setInterests(String interests) {
-        Interests = interests;
+        interests = interests;
     }
 
     //    private Object idImage;
@@ -71,7 +71,11 @@ public class User implements Serializable, Parcelable {
         this.gender = in.readString();
         this.phone = in.readString();
         this.date = in.readString();
-
+        this.disabledType = in.readString();
+        this.userType = in.readString();
+        this.profileImageURL = in.readString();
+        this.job = in.readString();
+this.interests = in.readString();
     }
 
     public String getFirstName() {
@@ -178,6 +182,7 @@ public class User implements Serializable, Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
+
         dest.writeString(this.firstName);
         dest.writeString(this.lastName);
         dest.writeString(this.email);
@@ -185,7 +190,12 @@ public class User implements Serializable, Parcelable {
         dest.writeString(this.date);
         dest.writeString(this.gender);
         dest.writeString(this.phone);
-
+        dest.writeString(this.interests);
+        dest.writeString(this.address);
+        dest.writeString(this.disabledType);
+        dest.writeString(this.job);
+        dest.writeString(this.profileImageURL);
+        dest.writeString(this.userType);
 
     }
 
