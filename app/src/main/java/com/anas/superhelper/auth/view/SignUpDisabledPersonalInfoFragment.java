@@ -21,6 +21,8 @@ import com.anas.superhelper.R;
 import com.anas.superhelper.androidchipbubbletext.ChipBubbleText;
 import com.anas.superhelper.auth.models.User;
 
+import java.lang.reflect.Array;
+
 
 public class SignUpDisabledPersonalInfoFragment extends Fragment implements
         AdapterView.OnItemSelectedListener {
@@ -31,8 +33,8 @@ public class SignUpDisabledPersonalInfoFragment extends Fragment implements
     Fragment signUpLastFragment;
     Bundle bundle;
     User user;
-    String[] values = {getString(R.string.reading_title), getString(R.string.sport), getString(R.string.watching_movies), getString(R.string.programming)};
-    String[] country = {getString(R.string.vision_Impairment), getString(R.string.deaf), getString(R.string.physical_disability)};
+    String[] values;
+    String[] country ;;
 TextView disableTypeTitle;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -45,6 +47,9 @@ TextView disableTypeTitle;
         interestsEditText = (MultiAutoCompleteTextView) view.findViewById(R.id.interests_text_view);
         nextBtn = (Button) view.findViewById(R.id.next_btn_disabled_personal_info);
         disabledTypeSpinner.setOnItemSelectedListener(this);
+        values = new String[]{getActivity().getString(R.string.reading_title), getActivity().getString(R.string.sport), getActivity().getString(R.string.watching_movies), getActivity().getString(R.string.programming)};
+        country = new String[]{getActivity().getString(R.string.vision_Impairment), getActivity().getString(R.string.deaf), getActivity().getString(R.string.physical_disability)};
+
         //Creating the ArrayAdapter instance having the country list
         ArrayAdapter disabledTypeSpinnerArrayAdapter = new ArrayAdapter(getActivity(), android.R.layout.simple_spinner_item, country);
         disabledTypeSpinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);

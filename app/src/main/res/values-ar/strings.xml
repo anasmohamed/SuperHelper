@@ -22,7 +22,6 @@
     <string name="Login">تسجيل دخول</string>
     <string name="main">الصفحة الرئيسبة</string>
     <string name="account">الحساب الشخصى</string>
-    <string name="request_details">تفاصيل الطلب</string>
     <string name="helping_type">نوع المساعدة</string>
     <string name="for_how">لمن هذا الطلب</string>
     <string name="request_title">عنوان الطلب</string>
@@ -37,7 +36,6 @@
     <string name="account_info">معلومات الحساب</string>
     <string name="name">الاسم</string>
     <string name="mobile_number">رقم الموبايل</string>
-    <string name="email">البريد الالكترونى</string>
     <string name="gender">الجنس</string>
     <string name="date_of_birth">تاريخ الميلاد</string>
     <string name="edit">تعديل</string>
@@ -103,5 +101,7 @@
     <string name="physical_disability">اعافة جسدية</string>
     <string name="closed">مغلق</string>
     <string name="accepted">تم قبول عرضك</string>
+    <string name="arabic">عربى</string>
+    <string name="eng">انجليزى</string>
 
 </resources>
